@@ -19,7 +19,7 @@ class LandingPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.4,
                       height: 100,
                       color: Colors.yellow,
-                      // tambah column untuk item gambar, text, dan bintang
+                      // tambah fitur column untuk item gambar, text, dan bintang
                     ),
                   ],
                 ),
