@@ -6,8 +6,14 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Hey User, Good Day", ),
+        toolbarHeight: 30,
+      ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.only(
+          top: 20,
+        ),
         child: ListView(
           children: [
             Row(
