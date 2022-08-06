@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/pages/detail_product.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
 
@@ -14,7 +15,7 @@ class Syntop extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LandingPage(),
+      home: DetailProduct(),
     );
   }
 }

@@ -6,6 +6,7 @@ Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color greyColor = const Color(0xff8D92A3);
 Color bgSplashScreen = const Color(0xffff3d47);
+Color yellowColor = const Color(0xffffc700);
 
 /// text Color
 TextStyle whiteTextStyle = GoogleFonts.poppins(
@@ -19,4 +20,8 @@ TextStyle blackTextStyle = GoogleFonts.poppins(
 
 TextStyle greyTextStyle = GoogleFonts.poppins(
   color: greyColor,
+);
+
+TextStyle yellowTextStyle = GoogleFonts.poppins(
+  color: yellowColor,
 );
