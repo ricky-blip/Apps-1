@@ -38,44 +38,118 @@ class DetailProduct extends StatelessWidget {
                 const SizedBox(height: 263),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 780,
+                  // height: 100,
                   decoration: BoxDecoration(
                     color: whiteColor,
                     borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
                     ),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Lenovo Thinkpad T570s",
-                          style: blackTextStyle,
-                        ),
+                        //NOTE Section 1
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.star,
-                              color: yellowColor,
+                            Column(
+                              children: [
+                                Text(
+                                  "Lenovo Thinkpad T570s",
+                                  style: blackTextStyle.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: yellowColor,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: yellowColor,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: yellowColor,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: yellowColor,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: yellowColor,
+                                    ),
+                                    SizedBox(width: 20),
+                                    Text(
+                                      "4.5",
+                                      style: greyTextStyle.copyWith(
+                                        fontFamily: "Poppins",
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.star,
-                              color: yellowColor,
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.add_box_outlined,
+                                      size: 40,
+                                    ),
+                                    Text(
+                                      " 1 ",
+                                      style: blackTextStyle.copyWith(
+                                        fontFamily: "Poppins",
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.indeterminate_check_box_outlined,
+                                      size: 40,
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.star,
-                              color: yellowColor,
+                          ],
+                        ),
+
+                        //NOTE Section 2
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 17),
+                            Text(
+                              "Deskripsi",
+                              style: blackTextStyle.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Icon(
-                              Icons.star,
-                              color: yellowColor,
+                            SizedBox(height: 10),
+                            Text(
+                                "Processor Up to 8th Gen Intel Core i5/i7 vPro FHD IPS Privacy Guard (1920 x 1080, 400 nit) Memory Up to 32GB",
+                                style: greyTextStyle),
+                            SizedBox(height: 17),
+                            Text(
+                              "Spesifikasi",
+                              style: blackTextStyle.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Icon(
-                              Icons.star,
-                              color: yellowColor,
-                            ),
+                            SizedBox(height: 10),
+                            Text("Ram 8gb, SSD 256gb, Layar FHD",
+                                style: greyTextStyle),
                           ],
                         ),
                       ],
@@ -88,7 +162,50 @@ class DetailProduct extends StatelessWidget {
         ),
       ),
       //Bottom Navigation Bar
-      bottomNavigationBar: BottomAppBar(child: Row(),),
+      //FIXME row colum2
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Total Price: "),
+                Row(
+                  children: [
+                    Text(
+                      "IDR 12.289.000",
+                      style: blackTextStyle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: bgSplashScreen,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Order Now",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
