@@ -16,7 +16,7 @@ class Syntop extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DetailProduct(),
+      home: OrderNow(),
     );
   }
 }

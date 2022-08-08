@@ -9,19 +9,14 @@ class OrderNow extends StatefulWidget {
 class _OrderNowState extends State<OrderNow> {
   // const OrderNow({Key? key}) : super(key: key);
   String dropdownPayment = 'Mandiri VA';
-
-  // void dropdownCallback(String? selectedValue) {
-  //   if (selectedValue is String) {
-  //     setState(() {
-  //       dropdownPayment = selectedValue;
-  //     });
-  //   }
-  // }
+  String dropdownDelivery = 'Kurir Instant';
+  String dropdownCity = 'Palembang';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightColor,
+      //NOTE AppBar
       appBar: AppBar(
         centerTitle: false,
         elevation: 0,
@@ -61,7 +56,14 @@ class _OrderNowState extends State<OrderNow> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Item Ordered"),
+                  Text(
+                    "Item Ordered",
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: 14,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
                   SizedBox(height: 10),
                   Row(
                     children: [
@@ -70,7 +72,7 @@ class _OrderNowState extends State<OrderNow> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              "assets/laptop1.png",
+                              "assets/detail1.png",
                               width: 70,
                               height: 70,
                               fit: BoxFit.cover,
@@ -78,37 +80,49 @@ class _OrderNowState extends State<OrderNow> {
                           ),
                         ],
                       ),
+                      SizedBox(width: 10),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Text("Lenovo Thinkpad T570s"),
+                              Text(
+                                "Lenovo Thinkpad T570s",
+                                style: blackTextStyle.copyWith(
+                                  fontSize: 14,
+                                  fontFamily: "Poppins",
+                                ),
+                              )
                             ],
                           ),
+                          SizedBox(height: 5),
                           Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("IDR 12.289.000"),
-                              // Spacer()
-                              // Text("1 items"),
+                              Text(
+                                "IDR 12.289.000",
+                                style: greyTextStyle.copyWith(
+                                  fontSize: 12,
+                                  fontFamily: "Poppins",
+                                ),
+                              ),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(
                                 Icons.add_box_outlined,
-                                size: 40,
+                                size: 30,
                               ),
                               Text(
                                 " 1 ",
-                                style: blackTextStyle.copyWith(
+                                style: greyTextStyle.copyWith(
                                   fontFamily: "Poppins",
                                   fontSize: 20,
                                 ),
                               ),
                               Icon(
                                 Icons.indeterminate_check_box_outlined,
-                                size: 40,
+                                size: 30,
                               ),
                             ],
                           ),
@@ -119,19 +133,33 @@ class _OrderNowState extends State<OrderNow> {
                         children: [
                           Row(
                             children: [
-                              Text("1 "),
-                              Text("items"),
+                              Text(
+                                "1 ",
+                                style: blackTextStyle.copyWith(
+                                    fontSize: 13, fontFamily: "Poppins"),
+                              ),
+                              Text(
+                                "items",
+                                style: blackTextStyle.copyWith(
+                                    fontSize: 13, fontFamily: "Poppins"),
+                              ),
                             ],
                           ),
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
-                  Text("Details Descriptions"),
+                  SizedBox(height: 23),
+                  Text(
+                    "Details Descriptions",
+                    style: blackTextStyle.copyWith(
+                      fontSize: 14,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
                   SizedBox(height: 10),
                   TextFormField(
-                    style: greyTextStyle.copyWith(fontSize: 15),
+                    style: greyTextStyle.copyWith(fontSize: 14),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Tulis Catatan",
@@ -145,11 +173,13 @@ class _OrderNowState extends State<OrderNow> {
           Padding(
             padding: EdgeInsets.all(20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Payment Method"),
+                    SizedBox(height: 10),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
                       decoration: BoxDecoration(
@@ -163,10 +193,9 @@ class _OrderNowState extends State<OrderNow> {
                           value: dropdownPayment,
                           icon: const Icon(Icons.keyboard_arrow_down),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: greyTextStyle,
                           underline: Container(
-                            height: 2,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: whiteColor,
                           ),
                           onChanged: (String? newValue) {
                             setState(() {
@@ -177,6 +206,7 @@ class _OrderNowState extends State<OrderNow> {
                             'Mandiri VA',
                             'BCA VA',
                             'BNI VA',
+                            'Bayar di rumah',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -189,8 +219,10 @@ class _OrderNowState extends State<OrderNow> {
                   ],
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Choose Delivery"),
+                    SizedBox(height: 10),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
                       decoration: BoxDecoration(
@@ -201,23 +233,21 @@ class _OrderNowState extends State<OrderNow> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: DropdownButton<String>(
-                          value: dropdownPayment,
+                          value: dropdownDelivery,
                           icon: const Icon(Icons.keyboard_arrow_down),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: greyTextStyle,
                           underline: Container(
-                            height: 2,
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: whiteColor,
                           ),
                           onChanged: (String? newValue) {
                             setState(() {
-                              dropdownPayment = newValue!;
+                              dropdownDelivery = newValue!;
                             });
                           },
                           items: <String>[
-                            'Mandiri VA',
-                            'BCA VA',
-                            'BNI VA',
+                            'Kurir Instant',
+                            'Ambil di Toko',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -233,13 +263,122 @@ class _OrderNowState extends State<OrderNow> {
             ),
           ),
           //NOTE Section 3
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Deliver to:"),
-              ],
+          Container(
+            color: whiteColor,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Deliver to:",
+                    style: blackTextStyle.copyWith(
+                      fontFamily: "Poppins",
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  //Name
+                  Text(
+                    "Name",
+                    style: greyTextStyle.copyWith(
+                      fontFamily: "Poppins",
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    style: greyTextStyle.copyWith(fontSize: 12),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Tuliskan Nama Lengkap kamu",
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  //Phone
+                  Text(
+                    "Phone No.",
+                    style: greyTextStyle.copyWith(
+                      fontFamily: "Poppins",
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    style: greyTextStyle.copyWith(fontSize: 12),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Tuliskan No kamu yang bisa dihubungi",
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  //Address
+                  Text(
+                    "Address",
+                    style: greyTextStyle.copyWith(
+                      fontFamily: "Poppins",
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    style: greyTextStyle.copyWith(fontSize: 12),
+                    minLines: 6,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Tuliskan, alamat, & patokan",
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  //City
+                  Text(
+                    "City",
+                    style: greyTextStyle.copyWith(
+                      fontFamily: "Poppins",
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    // width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: greyColor),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: DropdownButton<String>(
+                        value: dropdownCity,
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        elevation: 16,
+                        style: greyTextStyle,
+                        underline: Container(
+                          color: whiteColor,
+                        ),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownCity = newValue!;
+                          });
+                        },
+                        items: <String>[
+                          'Palembang',
+                          'Jakarta',
+                          'Bandung',
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
