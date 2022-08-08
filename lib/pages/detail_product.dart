@@ -161,27 +161,30 @@ class DetailProduct extends StatelessWidget {
           ],
         ),
       ),
-      //Bottom Navigation Bar
-      //FIXME row colum2
+      //NOTE Bottom Navigation Bar
       bottomNavigationBar: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 80,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Total Price: "),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text("Total Price: "),
                     Text(
                       "IDR 12.289.000",
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Spacer(),
+                  ],
+                ),
+                Column(
+                  children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 50,
