@@ -4,7 +4,9 @@ import 'package:flutter_syntop/pages/detail_product.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/pages/payment_now.dart';
+import 'package:flutter_syntop/pages/profile.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
+import 'package:flutter_syntop/pages/success.dart';
 
 void main() {
   runApp(const Syntop());
@@ -18,7 +20,7 @@ class Syntop extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PaymentNow(),
+      home: ProfilePages(),
     );
   }
 }
