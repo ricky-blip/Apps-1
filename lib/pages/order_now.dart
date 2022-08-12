@@ -381,7 +381,56 @@ class _OrderNowState extends State<OrderNow> {
               ),
             ),
           ),
+          SizedBox(height: 10),
         ],
+      ),
+      //SECTION bottom NavBar
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Total Price: "),
+                    Text(
+                      "IDR 12.289.000",
+                      style: blackTextStyle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: bgSplashScreen,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Order Now",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
