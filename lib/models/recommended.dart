@@ -1,11 +1,11 @@
-class Popular {
+class Recommended {
   //atribute
   int id;
   String imageUrl;
   String name;
   String harga;
   //Constractor
-  Popular({
+  Recommended({
     required this.id,
     required this.imageUrl,
     required this.name,

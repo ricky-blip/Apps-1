@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class SuccessPages extends StatelessWidget {
@@ -45,7 +46,10 @@ class SuccessPages extends StatelessWidget {
                 primary: bgSplashScreen,
               ),
               onPressed: () {
-                print("Upload!");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingPage()),
+                );
               },
               child: Text(
                 "Find Order",

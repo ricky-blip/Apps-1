@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
-class PaymentNow extends StatelessWidget {
-  const PaymentNow({Key? key}) : super(key: key);
+class InProgressDetails extends StatelessWidget {
+  const InProgressDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,12 @@ class PaymentNow extends StatelessWidget {
         toolbarHeight: 100,
         backgroundColor: whiteColor,
         iconTheme: IconThemeData(color: blackColor),
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back_ios_new),
-        ),
+        leading: Icon(Icons.arrow_back_ios_new),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Payment Now",
+              "Payment",
               style: blackTextStyle.copyWith(
                 fontSize: 20,
               ),
@@ -41,99 +36,8 @@ class PaymentNow extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          SizedBox(height: 20),
           //NOTE Section 1
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 70,
-                width: MediaQuery.of(context).size.width,
-                child: Image(
-                  image: AssetImage(
-                    "assets/mandiri_icon.png",
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Mandiri Virtual Account",
-                style: blackTextStyle.copyWith(
-                  fontFamily: "Roboto",
-                  fontSize: 11,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "90089181873817",
-                style: blackTextStyle.copyWith(
-                    fontFamily: "Roboto",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "a.n Syntop Laptopindo",
-                style: blackTextStyle.copyWith(
-                    fontFamily: "Roboto",
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 17),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Container(
-                  alignment: Alignment.center,
-                  color: bgSplashScreen,
-                  height: 45,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Text(
-                      "Note : Silahkan bayar tagihan ini sebelum menggunakan transfer bank lagi.",
-                      style: whiteTextStyle.copyWith(
-                        fontFamily: "Roboto",
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 40),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Container(
-                  color: whiteColor,
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: 200,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.upload_sharp,
-                        size: 70,
-                      ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(uploadColor),
-                        ),
-                        onPressed: () {
-                          print("Upload!");
-                        },
-                        child: Text(
-                          "Upload Bukti bayar",
-                          style: whiteTextStyle,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 33),
-          //NOTE Section 2
           Container(
             width: MediaQuery.of(context).size.width,
             height: 261,
@@ -300,11 +204,11 @@ class PaymentNow extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 17),
-          //NOTE Section 3
+          SizedBox(height: 20),
+          //NOTE Section 2
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 178,
+            // height: 178,
             color: whiteColor,
             child: Padding(
               padding: EdgeInsets.all(20),
@@ -392,6 +296,28 @@ class PaymentNow extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
+                            "House No.",
+                            style: TextStyle(
+                              color: greyColor,
+                              fontSize: 14,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                          Text(
+                            "A5 Hook",
+                            style: TextStyle(
+                              color: blackColor,
+                              fontSize: 14,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
                             "City",
                             style: TextStyle(
                               color: greyColor,
@@ -415,7 +341,95 @@ class PaymentNow extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 20),
+          //NOTE Section 3
+          Container(
+            width: MediaQuery.of(context).size.width,
+            color: whiteColor,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Order Status:",
+                        style: blackTextStyle.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        "#FM209391",
+                        style: greyTextStyle.copyWith(
+                          fontSize: 14,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        "Paid",
+                        style: greenTextStyle.copyWith(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
+      ),
+      //SECTION bottom NavBar
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Total Price: "),
+                    Text(
+                      "IDR 12.289.000",
+                      style: blackTextStyle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: bgSplashScreen,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Cancel My Order",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

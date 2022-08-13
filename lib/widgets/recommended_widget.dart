@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class RecommendedWidget extends StatelessWidget {
-  const RecommendedWidget({
-    Key? key,
-  }) : super(key: key);
+  final Recommended recommended;
+
+  const RecommendedWidget(this.recommended);
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +21,18 @@ class RecommendedWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Image.asset("assets/laptop2.png"),
+                Image.asset(recommended.imageUrl),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Dell Latitude",
+                        recommended.name,
                         style: blackTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        "IDR 10.000.000",
+                        recommended.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
                       SizedBox(height: 10),

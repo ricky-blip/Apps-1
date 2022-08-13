@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/pages/payment_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class OrderNow extends StatefulWidget {
@@ -23,7 +24,12 @@ class _OrderNowState extends State<OrderNow> {
         toolbarHeight: 100,
         backgroundColor: whiteColor,
         iconTheme: IconThemeData(color: blackColor),
-        leading: Icon(Icons.arrow_back_ios_new),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -387,7 +393,7 @@ class _OrderNowState extends State<OrderNow> {
       //SECTION bottom NavBar
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 80,
@@ -397,30 +403,46 @@ class _OrderNowState extends State<OrderNow> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Total Price: "),
+                    Text(
+                      "Total Price: ",
+                      style: greyTextStyle.copyWith(fontSize: 14),
+                    ),
                     Text(
                       "IDR 12.289.000",
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: bgSplashScreen,
-                        borderRadius: BorderRadius.circular(10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: bgSplashScreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      child: Center(
-                        child: Text(
-                          "Order Now",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: whiteColor,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaymentNow(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 45,
+                        child: Center(
+                          child: Text(
+                            "Checkout Now",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: whiteColor,
+                            ),
                           ),
                         ),
                       ),

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class PopularWidget extends StatelessWidget {
-  const PopularWidget({Key? key}) : super(key: key);
+  // const PopularWidget({Key? key}) : super(key: key);
+
+  //NOTE access PopularModels
+  final Popular popular;
+
+  const PopularWidget(this.popular);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class PopularWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
-                  "assets/laptop1.png",
+                  popular.imageUrl,
                   width: MediaQuery.of(context).size.width,
                   height: 170,
                   fit: BoxFit.cover,
@@ -34,11 +40,11 @@ class PopularWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Macbook Pro 2016",
+                        popular.name,
                         style: blackTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        "IDR 21.000.000",
+                        popular.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
                       Row(

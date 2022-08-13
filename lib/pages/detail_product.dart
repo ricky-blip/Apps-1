@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class DetailProduct extends StatelessWidget {
@@ -10,28 +11,13 @@ class DetailProduct extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            //Stack 1
+            //NOTE Stack 1
             Image.asset(
               "assets/detail1.png",
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
-            //Akhir Stack 1
-            //Stack 2
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                width: 31,
-                height: 31,
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Icon(Icons.arrow_back_rounded),
-              ),
-            ),
-            //Akhir Stack 2
-            //Stack 3
+            //NOTE Stack 2
             ListView(
               // scrollDirection: Axis.vertical,
               children: [
@@ -56,6 +42,7 @@ class DetailProduct extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "Lenovo Thinkpad T570s",
@@ -65,6 +52,7 @@ class DetailProduct extends StatelessWidget {
                                     fontFamily: "Poppins",
                                   ),
                                 ),
+                                SizedBox(height: 6),
                                 Row(
                                   children: [
                                     Icon(
@@ -87,12 +75,12 @@ class DetailProduct extends StatelessWidget {
                                       Icons.star,
                                       color: yellowColor,
                                     ),
-                                    SizedBox(width: 20),
+                                    SizedBox(width: 40),
                                     Text(
                                       "4.5",
                                       style: greyTextStyle.copyWith(
                                         fontFamily: "Poppins",
-                                        fontSize: 12,
+                                        fontSize: 14,
                                       ),
                                     ),
                                   ],
@@ -104,7 +92,7 @@ class DetailProduct extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(
-                                      Icons.add_box_outlined,
+                                      Icons.indeterminate_check_box_outlined,
                                       size: 40,
                                     ),
                                     Text(
@@ -115,7 +103,7 @@ class DetailProduct extends StatelessWidget {
                                       ),
                                     ),
                                     Icon(
-                                      Icons.indeterminate_check_box_outlined,
+                                      Icons.add_box_outlined,
                                       size: 40,
                                     ),
                                   ],
@@ -124,32 +112,36 @@ class DetailProduct extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         //NOTE Section 2
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 17),
+                            SizedBox(height: 31),
                             Text(
                               "Deskripsi",
                               style: blackTextStyle.copyWith(
                                 fontWeight: FontWeight.bold,
+                                fontSize: 14,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 12),
                             Text(
-                                "Processor Up to 8th Gen Intel Core i5/i7 vPro FHD IPS Privacy Guard (1920 x 1080, 400 nit) Memory Up to 32GB",
-                                style: greyTextStyle),
-                            SizedBox(height: 17),
+                              "Processor Up to 8th Gen Intel Core i5/i7 vPro FHD IPS Privacy Guard (1920 x 1080, 400 nit) Memory Up to 32GB",
+                              style: greyTextStyle.copyWith(fontSize: 14),
+                            ),
+                            SizedBox(height: 30),
                             Text(
                               "Spesifikasi",
                               style: blackTextStyle.copyWith(
                                 fontWeight: FontWeight.bold,
+                                fontSize: 14,
                               ),
                             ),
-                            SizedBox(height: 10),
-                            Text("Ram 8gb, SSD 256gb, Layar FHD",
-                                style: greyTextStyle),
+                            SizedBox(height: 12),
+                            Text(
+                              "Ram 8gb, SSD 256gb, Layar FHD",
+                              style: greyTextStyle.copyWith(fontSize: 14),
+                            ),
                           ],
                         ),
                       ],
@@ -158,13 +150,31 @@ class DetailProduct extends StatelessWidget {
                 ),
               ],
             ),
+            //NOTE Stack 3
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 31,
+                  height: 31,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Icon(Icons.arrow_back_rounded),
+                ),
+              ),
+            ),
           ],
         ),
       ),
       //NOTE Bottom Navigation Bar
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 80,
@@ -174,30 +184,46 @@ class DetailProduct extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Total Price: "),
+                    Text(
+                      "Total Price: ",
+                      style: greyTextStyle.copyWith(fontSize: 14),
+                    ),
                     Text(
                       "IDR 12.289.000",
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: bgSplashScreen,
-                        borderRadius: BorderRadius.circular(10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: bgSplashScreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      child: Center(
-                        child: Text(
-                          "Order Now",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: whiteColor,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderNow(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 45,
+                        child: Center(
+                          child: Text(
+                            "Order Now",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: whiteColor,
+                            ),
                           ),
                         ),
                       ),

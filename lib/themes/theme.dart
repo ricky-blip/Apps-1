@@ -9,10 +9,10 @@ Color bgSplashScreen = const Color(0xffff3d47);
 Color yellowColor = const Color(0xffffc700);
 Color lightColor = const Color(0xfffbf6f6);
 Color uploadColor = const Color(0xffF8A70F);
+Color greenColor = const Color(0xff1ABC9C);
 
 /// text Color
 TextStyle whiteTextStyle = GoogleFonts.poppins(
-  fontSize: 14,
   color: whiteColor,
 );
 
@@ -30,4 +30,12 @@ TextStyle yellowTextStyle = GoogleFonts.poppins(
 
 TextStyle uploadTextStyle = GoogleFonts.poppins(
   color: uploadColor,
+);
+
+TextStyle redTextStyle = GoogleFonts.poppins(
+  color: bgSplashScreen,
+);
+
+TextStyle greenTextStyle = GoogleFonts.poppins(
+  color: greenColor,
 );
