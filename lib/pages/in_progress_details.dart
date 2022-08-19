@@ -396,11 +396,17 @@ class InProgressDetails extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Total Price: "),
+                    Text(
+                      "Total Price: ",
+                      style: greyTextStyle.copyWith(
+                        fontSize: 13,
+                      ),
+                    ),
                     Text(
                       "IDR 12.289.000",
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ],

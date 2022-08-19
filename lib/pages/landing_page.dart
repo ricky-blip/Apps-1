@@ -14,7 +14,7 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       //AppBar
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         backgroundColor: whiteColor,
         iconTheme: IconThemeData(color: blackColor),
         elevation: 0,
@@ -133,7 +133,7 @@ class LandingPage extends StatelessWidget {
                       RecommendedWidget(
                         Recommended(
                             id: 2,
-                            imageUrl: "assets/laptop1.png",
+                            imageUrl: "assets/laptop2.png",
                             name: "Dell Latitude 17",
                             harga: "IDR 35.000.000"),
                       ),
@@ -153,7 +153,7 @@ class LandingPage extends StatelessWidget {
                       RecommendedWidget(
                         Recommended(
                             id: 2,
-                            imageUrl: "assets/laptop1.png",
+                            imageUrl: "assets/laptop2.png",
                             name: "Dell Latitude 17",
                             harga: "IDR 35.000.000"),
                       ),

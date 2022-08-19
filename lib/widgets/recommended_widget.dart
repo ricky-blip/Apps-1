@@ -21,7 +21,12 @@ class RecommendedWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Image.asset(recommended.imageUrl),
+                Image.asset(
+                  recommended.imageUrl,
+                  width: MediaQuery.of(context).size.width,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/pages/success.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class PaymentNow extends StatelessWidget {
@@ -119,7 +120,11 @@ class PaymentNow extends StatelessWidget {
                               MaterialStateProperty.all(uploadColor),
                         ),
                         onPressed: () {
-                          print("Upload!");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SuccessPages()),
+                          );
                         },
                         child: Text(
                           "Upload Bukti bayar",
