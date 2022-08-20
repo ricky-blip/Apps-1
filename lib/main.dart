@@ -5,9 +5,12 @@ import 'package:flutter_syntop/pages/checkout.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
 import 'package:flutter_syntop/pages/in_progress_details.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
+import 'package:flutter_syntop/pages/login.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/pages/payment_now.dart';
 import 'package:flutter_syntop/pages/profile.dart';
+import 'package:flutter_syntop/pages/register.dart';
+import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
 import 'package:flutter_syntop/pages/success.dart';
 

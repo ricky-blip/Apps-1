@@ -46,7 +46,8 @@ class LandingPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetailProduct()),
+                  MaterialPageRoute(
+                      builder: (context) => const DetailProduct()),
                 );
               },
               child: SingleChildScrollView(
@@ -54,7 +55,8 @@ class LandingPage extends StatelessWidget {
                 child: Row(
                   //SECTION Row Parent
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
+                    //NOTE access Popular_Widget --> id,imageUrl,name,harga
                     PopularWidget(
                       Popular(
                           id: 1,
@@ -62,7 +64,7 @@ class LandingPage extends StatelessWidget {
                           name: "Macbook Pro 2025 16",
                           harga: "IDR 51.000.000"),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     PopularWidget(
                       Popular(
                           id: 2,
@@ -70,7 +72,7 @@ class LandingPage extends StatelessWidget {
                           name: "Dell XPS 15",
                           harga: "IDR 45.000.000"),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     PopularWidget(
                       Popular(
                           id: 3,
@@ -78,13 +80,13 @@ class LandingPage extends StatelessWidget {
                           name: "Thinkpad x990 13",
                           harga: "IDR 40.000.000"),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           //NOTE Recommended Text
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
@@ -94,19 +96,28 @@ class LandingPage extends StatelessWidget {
                   "Recommended",
                   style: blackTextStyle,
                 ),
-                Spacer(),
-                Text(
-                  "See All",
-                  style: blackTextStyle,
-                ),
-                Icon(
-                  Icons.navigate_next,
-                  color: greyColor,
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "See All",
+                        style: blackTextStyle,
+                      ),
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 17,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 17),
+          const SizedBox(height: 17),
           //NOTE Recommended Widget
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
@@ -123,6 +134,7 @@ class LandingPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      //NOTE access Popular_Widget --> id,imageUrl,name,harga
                       RecommendedWidget(
                         Recommended(
                             id: 1,
@@ -143,6 +155,7 @@ class LandingPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      //NOTE access Popular_Widget --> id,imageUrl,name,harga
                       RecommendedWidget(
                         Recommended(
                             id: 1,

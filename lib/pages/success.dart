@@ -1,9 +1,42 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/home.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
-class SuccessPages extends StatelessWidget {
+class SuccessPages extends StatefulWidget {
   const SuccessPages({Key? key}) : super(key: key);
+
+  @override
+  State<SuccessPages> createState() => _SuccessPagesState();
+}
+
+class _SuccessPagesState extends State<SuccessPages> {
+  // NOTE add Timer & go to Home
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(
+      const Duration(seconds: 3),
+      (() => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          )),
+    );
+    // Timer(
+    // const  Duration(seconds: 2),
+    //   (() => Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) => const Home(),
+    //         ),
+    //       )),
+    // );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +73,22 @@ class SuccessPages extends StatelessWidget {
             ),
             SizedBox(height: 30),
             //NOTE Button
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(200, 45),
-                primary: bgSplashScreen,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LandingPage()),
-                );
-              },
-              child: Text(
-                "Find Order",
-                style: whiteTextStyle.copyWith(fontSize: 14),
-              ),
-            ),
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //     fixedSize: Size(200, 45),
+            //     primary: bgSplashScreen,
+            //   ),
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => Home()),
+            //     );
+            //   },
+            //   child: Text(
+            //     "Find Order",
+            //     style: whiteTextStyle.copyWith(fontSize: 14),
+            //   ),
+            // ),
           ],
         ),
       ),

@@ -1,10 +1,13 @@
+// ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
 class RecommendedWidget extends StatelessWidget {
+  //NOTE access class 'Recommended' model --> Atribute 'recommended'
   final Recommended recommended;
 
+  //NOTE Constractor
   const RecommendedWidget(this.recommended);
 
   @override
@@ -22,6 +25,7 @@ class RecommendedWidget extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
+                  //NOTE access Model Recommended untuk image
                   recommended.imageUrl,
                   width: MediaQuery.of(context).size.width,
                   height: 120,
@@ -33,10 +37,12 @@ class RecommendedWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        //NOTE access Model Recommended untuk name
                         recommended.name,
                         style: blackTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
+                        //NOTE access Model Recommended untuk harga
                         recommended.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),

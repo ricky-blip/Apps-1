@@ -1,38 +1,35 @@
 // ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_syntop/models/popular.dart';
+import 'package:flutter_syntop/models/see_all.dart';
+import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
-class PopularWidget extends StatelessWidget {
-  //NOTE access class 'Popular' model --> Atribute 'popular'
-  final Popular popular;
+class SeeAllWidget extends StatelessWidget {
+  //NOTE access class 'See All' model --> Atribute 'seeAll'
+  final SeeAll seeAll;
 
   //NOTE Constractor
-  const PopularWidget(this.popular);
+  const SeeAllWidget(this.seeAll);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      //NOTE Row 1
+    return Column(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            width: 250,
-            // height: 193,
+            width: MediaQuery.of(context).size.width * 0.43,
+            // height: 166,
             decoration: BoxDecoration(
               color: whiteColor,
-              // add Box Shadow
-              // borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
-                  //NOTE access Model Popular untuk image
-                  popular.imageUrl,
+                  //NOTE access Model See All untuk image
+                  seeAll.imageUrl,
                   width: MediaQuery.of(context).size.width,
-                  height: 170,
+                  height: 120,
                   fit: BoxFit.cover,
                 ),
                 Padding(
@@ -41,40 +38,48 @@ class PopularWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        //NOTE access Model Popular untuk name
-                        popular.name,
+                        //NOTE access Model See All untuk name
+                        seeAll.name,
                         style: blackTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
-                        //NOTE access Model Popular untuk harga
-                        popular.harga,
+                        //NOTE access Model see All untuk harga
+                        seeAll.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
+                      SizedBox(height: 10),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(
                             Icons.star,
                             color: yellowColor,
+                            size: 15,
                           ),
                           Icon(
                             Icons.star,
                             color: yellowColor,
+                            size: 15,
                           ),
                           Icon(
                             Icons.star,
                             color: yellowColor,
+                            size: 15,
                           ),
                           Icon(
                             Icons.star,
                             color: yellowColor,
+                            size: 15,
                           ),
                           Icon(
-                            Icons.star_border_outlined,
+                            Icons.star,
                             color: greyColor,
+                            size: 15,
                           ),
                           Spacer(),
-                          Text("4,5"),
+                          Text(
+                            "4.0",
+                            style: greyTextStyle,
+                          ),
                         ],
                       ),
                     ],
