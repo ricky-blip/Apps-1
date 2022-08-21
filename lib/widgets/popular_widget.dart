@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:flutter_syntop/widgets/ratings_widget.dart';
 
 class PopularWidget extends StatelessWidget {
   //NOTE access class 'Popular' model --> Atribute 'popular'
@@ -50,31 +51,11 @@ class PopularWidget extends StatelessWidget {
                         popular.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
+                      //NOTE Star
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                          ),
-                          Icon(
-                            Icons.star_border_outlined,
-                            color: greyColor,
-                          ),
-                          Spacer(),
-                          Text("4,5"),
+                          RatingsWidget(),
                         ],
                       ),
                     ],

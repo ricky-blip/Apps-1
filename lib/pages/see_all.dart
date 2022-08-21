@@ -11,22 +11,29 @@ class SeeAllPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: false,
         elevation: 0,
-        backgroundColor: whiteColor,
+        toolbarHeight: 70,
+        backgroundColor: bgSplashScreen,
         title: Column(
           children: [
-            //NOTE TextField Cari Laptop Apa Hari ini ...
             Container(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 10, bottom: 10),
+                  left: 10,
+                  right: 0,
+                  top: 3,
+                  bottom: 3,
+                ),
                 child: TextField(
-                  obscureText: true,
-                  style: greyTextStyle.copyWith(fontSize: 12),
+                  style: greyTextStyle.copyWith(fontSize: 14),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Cari Laptop Apa Hari ini ...",
@@ -34,68 +41,81 @@ class SeeAllPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 10),
+            SingleChildScrollView(
+              child: Row(
+                children: [
+                  
+                ],
+              ),
+            ),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DetailProduct()),
-            );
-          },
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DetailProduct()),
+                );
+              },
+              child: Column(
                 children: [
-                  //NOTE access Popular_Widget --> id,imageUrl,name,harga from Model
-                  SeeAllWidget(
-                    SeeAll(
-                      id: 1,
-                      imageUrl: "assets/laptop1.png",
-                      name: "Macbook Air 2030",
-                      harga: "IDR 21.000.000",
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      //NOTE access Popular_Widget --> id,imageUrl,name,harga from Model
+                      SeeAllWidget(
+                        SeeAll(
+                          id: 1,
+                          imageUrl: "assets/laptop1.png",
+                          name: "Macbook Air 2030",
+                          harga: "IDR 21.000.000",
+                        ),
+                      ),
+                      SeeAllWidget(
+                        SeeAll(
+                          id: 2,
+                          imageUrl: "assets/laptop2.png",
+                          name: "Dell Latitude 17",
+                          harga: "IDR 35.000.000",
+                        ),
+                      ),
+                    ],
                   ),
-                  SeeAllWidget(
-                    SeeAll(
-                      id: 2,
-                      imageUrl: "assets/laptop2.png",
-                      name: "Dell Latitude 17",
-                      harga: "IDR 35.000.000",
-                    ),
+                  SizedBox(height: 33),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      //NOTE access Popular_Widget --> id,imageUrl,name,harga from Model
+                      SeeAllWidget(
+                        SeeAll(
+                          id: 1,
+                          imageUrl: "assets/laptop1.png",
+                          name: "Macbook Air 2030",
+                          harga: "IDR 21.000.000",
+                        ),
+                      ),
+                      SeeAllWidget(
+                        SeeAll(
+                          id: 2,
+                          imageUrl: "assets/laptop2.png",
+                          name: "Dell Latitude 17",
+                          harga: "IDR 35.000.000",
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              SizedBox(height: 33),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  //NOTE access Popular_Widget --> id,imageUrl,name,harga from Model
-                  SeeAllWidget(
-                    SeeAll(
-                      id: 1,
-                      imageUrl: "assets/laptop1.png",
-                      name: "Macbook Air 2030",
-                      harga: "IDR 21.000.000",
-                    ),
-                  ),
-                  SeeAllWidget(
-                    SeeAll(
-                      id: 2,
-                      imageUrl: "assets/laptop2.png",
-                      name: "Dell Latitude 17",
-                      harga: "IDR 35.000.000",
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

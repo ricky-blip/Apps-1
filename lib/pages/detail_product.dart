@@ -1,9 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 
-class DetailProduct extends StatelessWidget {
+class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key}) : super(key: key);
+
+  @override
+  State<DetailProduct> createState() => _DetailProductState();
+}
+
+class _DetailProductState extends State<DetailProduct> {
+  //NOTE Atribute Button + -
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,58 +63,46 @@ class DetailProduct extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 6),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowColor,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowColor,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowColor,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowColor,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowColor,
-                                    ),
-                                    SizedBox(width: 40),
-                                    Text(
-                                      "4.5",
-                                      style: greyTextStyle.copyWith(
-                                        fontFamily: "Poppins",
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                //NOTE STAR
                               ],
                             ),
+                            //NOTE BUTTON + -
                             Column(
                               children: [
                                 Row(
                                   children: [
-                                    Icon(
-                                      Icons.indeterminate_check_box_outlined,
-                                      size: 40,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          quantity = max(1, quantity - 1);
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.indeterminate_check_box_outlined,
+                                        size: 40,
+                                      ),
                                     ),
+                                    SizedBox(width: 5),
                                     Text(
-                                      " 1 ",
+                                      "${quantity}",
                                       style: blackTextStyle.copyWith(
                                         fontFamily: "Poppins",
                                         fontSize: 20,
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.add_box_outlined,
-                                      size: 40,
+                                    SizedBox(width: 5),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          setState(() {
+                                            quantity = max(1, quantity + 1);
+                                          });
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.add_box_outlined,
+                                        size: 40,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -150,7 +148,7 @@ class DetailProduct extends StatelessWidget {
                 ),
               ],
             ),
-            //NOTE Stack 3
+            //NOTE Stack 3 back Button
             Padding(
               padding: const EdgeInsets.all(20),
               child: InkWell(
