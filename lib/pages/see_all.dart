@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/see_all.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/see_all_widget.dart';
 import '../pages/detail_product.dart';
+import '../widgets/chip_widget.dart';
 
 class SeeAllPage extends StatelessWidget {
   const SeeAllPage({Key? key}) : super(key: key);
@@ -11,27 +13,20 @@ class SeeAllPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: false,
+        automaticallyImplyLeading: true,
         elevation: 0,
-        toolbarHeight: 70,
         backgroundColor: bgSplashScreen,
         title: Column(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                  right: 0,
-                  top: 3,
-                  bottom: 3,
-                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: TextField(
                   style: greyTextStyle.copyWith(fontSize: 14),
                   decoration: InputDecoration(
@@ -41,19 +36,50 @@ class SeeAllPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            SingleChildScrollView(
-              child: Row(
-                children: [
-                  
-                ],
-              ),
-            ),
           ],
         ),
       ),
       body: ListView(
         children: [
+          Container(
+            // color: Colors.amber,
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    SeeAllChip(
+                      colorChip: whiteColor,
+                      text: "Macbook",
+                      iconChip: Icon(Icons.laptop_mac),
+                    ),
+                    SizedBox(width: 10),
+                    SeeAllChip(
+                      colorChip: whiteColor,
+                      text: "Lenovo Thinkpad",
+                      iconChip: Icon(Icons.laptop_windows),
+                    ),
+                    SizedBox(width: 10),
+                    SeeAllChip(
+                      colorChip: whiteColor,
+                      text: "Dell XPS",
+                      iconChip: Icon(Icons.laptop_sharp),
+                    ),
+                    SizedBox(width: 10),
+                    SeeAllChip(
+                      colorChip: whiteColor,
+                      text: "Huawei Matebook",
+                      iconChip: Icon(Icons.laptop_sharp),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: GestureDetector(

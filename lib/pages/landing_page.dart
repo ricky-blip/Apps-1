@@ -43,12 +43,13 @@ class LandingPage extends StatelessWidget {
               top: 20,
               bottom: 20,
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DetailProduct()),
+                    builder: (context) => const DetailProduct(),
+                  ),
                 );
               },
               child: SingleChildScrollView(
@@ -60,26 +61,29 @@ class LandingPage extends StatelessWidget {
                     //NOTE access Popular_Widget --> id,imageUrl,name,harga
                     PopularWidget(
                       Popular(
-                          id: 1,
-                          imageUrl: "assets/laptop1.png",
-                          name: "Macbook Pro 2025 16",
-                          harga: "IDR 51.000.000"),
+                        id: 1,
+                        imageUrl: "assets/laptop1.png",
+                        name: "Macbook Pro 2025 16",
+                        harga: "IDR 51.000.000",
+                      ),
                     ),
                     const SizedBox(width: 10),
                     PopularWidget(
                       Popular(
-                          id: 2,
-                          imageUrl: "assets/laptop2.png",
-                          name: "Dell XPS 15",
-                          harga: "IDR 45.000.000"),
+                        id: 2,
+                        imageUrl: "assets/laptop2.png",
+                        name: "Dell XPS 15",
+                        harga: "IDR 45.000.000",
+                      ),
                     ),
                     const SizedBox(width: 10),
                     PopularWidget(
                       Popular(
-                          id: 3,
-                          imageUrl: "assets/laptop1.png",
-                          name: "Thinkpad x990 13",
-                          harga: "IDR 40.000.000"),
+                        id: 3,
+                        imageUrl: "assets/laptop1.png",
+                        name: "Thinkpad x990 13",
+                        harga: "IDR 40.000.000",
+                      ),
                     ),
                     const SizedBox(width: 10),
                   ],

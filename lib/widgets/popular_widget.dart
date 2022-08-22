@@ -37,7 +37,7 @@ class PopularWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -51,6 +51,7 @@ class PopularWidget extends StatelessWidget {
                         popular.harga,
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
+                      SizedBox(height: 5),
                       //NOTE Star
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
