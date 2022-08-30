@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/see_all.dart';
+import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/see_all_widget.dart';
 import '../pages/detail_product.dart';
@@ -21,18 +22,23 @@ class SeeAllPage extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(1),
-                    child: Icon(Icons.arrow_back_sharp),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back_sharp),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      // width: 300,
+                      // width: MediaQuery.of(context).size.width,
+                      width: 250,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
