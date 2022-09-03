@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/see_all.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
@@ -104,6 +103,7 @@ class SeeAllPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          
           SizedBox(height: 10),
           Padding(
             //NOTE Item

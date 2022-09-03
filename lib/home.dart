@@ -33,26 +33,34 @@ class _HomeState extends State<Home> {
       //NOTE access Pages
       body: screen[currentTab],
       bottomNavigationBar: ConvexAppBar(
-        backgroundColor: Color(0xffff3d47),
+        backgroundColor: whiteColor,
+        // color: bgSplashScreen,
         height: 50,
         style: TabStyle.react,
-        top: -10,
+        top: 0,
         items: [
           TabItem(
             icon: SvgPicture.asset(
               "assets/ic_home.svg",
               width: 25,
               height: 25,
-              color: currentTab == 0 ? Colors.white : Colors.grey[400],
+              color: currentTab == 0 ? bgSplashScreen : Colors.grey[400],
             ),
           ),
-          TabItem(icon: Icons.shopping_cart),
+          TabItem(
+            icon: SvgPicture.asset(
+              "assets/ic_shop.svg",
+              width: 25,
+              height: 25,
+              color: currentTab == 1 ? bgSplashScreen : Colors.grey[400],
+            ),
+          ),
           TabItem(
             icon: SvgPicture.asset(
               "assets/ic_profile.svg",
               width: 25,
               height: 25,
-              color: currentTab == 0 ? Colors.white : Colors.grey[400],
+              color: currentTab == 2 ? bgSplashScreen : Colors.grey[400],
             ),
           ),
         ],
