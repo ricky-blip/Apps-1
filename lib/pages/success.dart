@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_syntop/home.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:lottie/lottie.dart';
 
 class SuccessPages extends StatefulWidget {
   const SuccessPages({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _SuccessPagesState extends State<SuccessPages> {
     // TODO: implement initState
     super.initState();
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
       (() => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -41,17 +42,19 @@ class _SuccessPagesState extends State<SuccessPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //NOTE image
-            Image.asset(
-              "assets/success_pages.png",
-              height: 290,
-              width: MediaQuery.of(context).size.width,
-            ),
-            SizedBox(height: 30),
+            // Image.asset(
+            //   ,
+            //   height: 290,
+            //   width: MediaQuery.of(context).size.width,
+            // ),
+            Lottie.asset('assets/success.json'),
+            // SizedBox(height: 30),
             //NOTE text 1
             Text(
               "Yeay! Completed",
