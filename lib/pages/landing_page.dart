@@ -27,10 +27,11 @@ class LandingPage extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.account_circle,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[500],
+              backgroundImage: AssetImage("assets/profile1.png"),
             ),
           ),
         ],
@@ -133,7 +134,7 @@ class LandingPage extends StatelessWidget {
           //NOTE Recommended Widget
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
