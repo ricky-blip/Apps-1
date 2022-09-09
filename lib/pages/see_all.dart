@@ -103,7 +103,6 @@ class SeeAllPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          
           SizedBox(height: 10),
           Padding(
             //NOTE Item

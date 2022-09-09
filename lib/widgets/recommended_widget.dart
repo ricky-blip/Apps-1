@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:flutter_syntop/widgets/ratings_widget.dart';
 
 class RecommendedWidget extends StatelessWidget {
   //NOTE access class 'Recommended' model --> Atribute 'recommended'
@@ -47,38 +48,10 @@ class RecommendedWidget extends StatelessWidget {
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
                       SizedBox(height: 10),
+                      //NOTE Ratings
                       Row(
                         children: [
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: yellowColor,
-                            size: 15,
-                          ),
-                          Icon(
-                            Icons.star,
-                            color: greyColor,
-                            size: 15,
-                          ),
-                          Spacer(),
-                          Text(
-                            "4.0",
-                            style: greyTextStyle,
-                          ),
+                          RatingsWidget(),
                         ],
                       ),
                     ],

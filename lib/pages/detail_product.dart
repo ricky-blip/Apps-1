@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:flutter_syntop/widgets/ratings_widget.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key}) : super(key: key);
@@ -64,6 +65,9 @@ class _DetailProductState extends State<DetailProduct> {
                                 ),
                                 SizedBox(height: 6),
                                 //NOTE STAR
+                                Row(
+                                  children: [RatingsWidget()],
+                                ),
                               ],
                             ),
                             //NOTE BUTTON + -
@@ -75,6 +79,7 @@ class _DetailProductState extends State<DetailProduct> {
                                       onTap: () {
                                         setState(() {
                                           quantity = max(1, quantity - 1);
+                                          print("- $quantity");
                                         });
                                       },
                                       child: Icon(
@@ -96,6 +101,7 @@ class _DetailProductState extends State<DetailProduct> {
                                         setState(() {
                                           setState(() {
                                             quantity = max(1, quantity + 1);
+                                            print("+ $quantity");
                                           });
                                         });
                                       },

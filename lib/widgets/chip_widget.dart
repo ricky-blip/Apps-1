@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +25,7 @@ class SeeAllChip extends StatelessWidget {
       elevation: 1.0,
       shadowColor: Colors.grey[60],
       backgroundColor: colorChip,
-      padding: EdgeInsets.all(6.0),
+      padding: EdgeInsets.all(7.0),
     );
   }
 }

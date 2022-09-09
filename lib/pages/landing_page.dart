@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
+import 'package:flutter_syntop/pages/profile.dart';
 import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/popular_widget.dart';
@@ -40,10 +41,7 @@ class LandingPage extends StatelessWidget {
         children: [
           //NOTE Popular Widget
           Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              bottom: 20,
-            ),
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
