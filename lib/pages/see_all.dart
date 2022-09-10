@@ -37,7 +37,7 @@ class SeeAllPage extends StatelessWidget {
                         horizontal: 20, vertical: 10),
                     child: Container(
                       // width: MediaQuery.of(context).size.width,
-                      width: 250,
+                      width: 340,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
