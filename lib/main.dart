@@ -13,7 +13,8 @@ import 'package:flutter_syntop/pages/register.dart';
 import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
 import 'package:flutter_syntop/pages/success.dart';
-
+import 'package:flutter_syntop/pages_statefull/home_page.dart';
+import 'package:get/get.dart';
 void main() {
   runApp(const Syntop());
 }
@@ -24,9 +25,9 @@ class Syntop extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: HomePageStatefull(),
     );
   }
 }
