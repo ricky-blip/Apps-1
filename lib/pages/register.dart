@@ -106,7 +106,7 @@ class RegisterPages extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 21),
+                SizedBox(height: 20),
                 //NOTE Password
                 Container(
                   decoration: BoxDecoration(
