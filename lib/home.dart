@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/pages/cart.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
+import 'package:flutter_syntop/pages/login.dart';
 import 'package:flutter_syntop/pages/profile.dart';
+import 'package:sp_util/sp_util.dart';
 import './themes/theme.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -18,10 +20,12 @@ class _HomeState extends State<Home> {
   int currentTab = 0;
 
   //NOTE List Pages
-  final List<Widget> screen = const [
+
+  final List<Widget> screen = [
     LandingPage(),
     CartPages(),
-    ProfilePages(),
+    //NOTE Button Person
+    SpUtil.getString("name_user") == "" ? LoginPage() : ProfilePages(),
   ];
 
   //NOTE current Screen
@@ -32,6 +36,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       //NOTE access Pages
       body: screen[currentTab],
+
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: whiteColor,
         // color: bgSplashScreen,

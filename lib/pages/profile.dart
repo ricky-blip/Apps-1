@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/controllers/auth_controller.dart';
 import 'package:flutter_syntop/pages/bank_account.dart';
 import 'package:flutter_syntop/pages/edit_profile.dart';
 import 'package:flutter_syntop/pages/home_address.dart';
+import 'package:flutter_syntop/pages/register.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
+import 'package:sp_util/sp_util.dart';
 
 class ProfilePages extends StatelessWidget {
   const ProfilePages({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //NOTE memanggil Auth Controller
+    final authC = Get.put(AuthController());
+
     return Scaffold(
       backgroundColor: lightColor,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              authC.logout();
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: ListView(
           children: [
@@ -43,7 +61,9 @@ class ProfilePages extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Alexandre Christie",
+                                //TODO menambahkan spUtil ke name Profile
+                                SpUtil.getString("name_user").toString(),
+                                // "Alexandre Christie",
                                 style: TextStyle(
                                   color: blackColor,
                                   fontSize: 20,
@@ -51,7 +71,7 @@ class ProfilePages extends StatelessWidget {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                "alexandreChristie@gmail.com",
+                                SpUtil.getString("email_user").toString(),
                                 style: TextStyle(
                                   color: greyColor,
                                   fontSize: 11,
@@ -148,6 +168,23 @@ class ProfilePages extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Bank Account",
+                                    style: greyTextStyle.copyWith(fontSize: 18),
+                                  ),
+                                  Spacer(),
+                                  Icon(Icons.chevron_right_sharp),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            //NOTE Register
+                            InkWell(
+                              onTap: () {
+                                Get.to(RegisterPages());
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Register",
                                     style: greyTextStyle.copyWith(fontSize: 18),
                                   ),
                                   Spacer(),

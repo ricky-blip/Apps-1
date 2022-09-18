@@ -13,9 +13,13 @@ import 'package:flutter_syntop/pages/register.dart';
 import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
 import 'package:flutter_syntop/pages/success.dart';
-import 'package:flutter_syntop/pages_statefull/home_page.dart';
+
 import 'package:get/get.dart';
-void main() {
+import 'package:sp_util/sp_util.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
   runApp(const Syntop());
 }
 
@@ -27,7 +31,7 @@ class Syntop extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePageStatefull(),
+      home: SplashScreen(),
     );
   }
 }

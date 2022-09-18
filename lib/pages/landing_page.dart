@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/controllers/auth_controller.dart';
 import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
@@ -7,12 +8,17 @@ import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/popular_widget.dart';
 import 'package:flutter_syntop/widgets/recommended_widget.dart';
+import 'package:get/get.dart';
+import 'package:sp_util/sp_util.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //NOTE memanggil controller
+    final authC = Get.put(AuthController());
+
     return Scaffold(
       //AppBar
       appBar: AppBar(
@@ -21,7 +27,8 @@ class LandingPage extends StatelessWidget {
         iconTheme: IconThemeData(color: blackColor),
         elevation: 0,
         title: Text(
-          "Hey Ricky, Good",
+          //NOTE get data Nama User
+          "${SpUtil.getString("name_user").toString() == "Hey" ? "User" : SpUtil.getString("name_user").toString() + " " + "Happy Good Day"} ",
           style: blackTextStyle.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import '../themes/theme.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingsWidget extends StatelessWidget {
