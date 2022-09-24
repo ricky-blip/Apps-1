@@ -35,14 +35,14 @@ class RatingsWidget extends StatelessWidget {
           },
         ),
 
-        // SizedBox(width: 90),
-        Text(
-          "$savedRate",
-          style: greyTextStyle.copyWith(
-            fontFamily: "Poppins",
-            fontSize: 12,
-          ),
-        ),
+        SizedBox(width: 30),
+        // Text(
+        //   "$savedRate",
+        //   style: greyTextStyle.copyWith(
+        //     fontFamily: "Poppins",
+        //     fontSize: 12,
+        //   ),
+        // ),
       ],
     );
   }

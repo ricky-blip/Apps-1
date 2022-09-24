@@ -109,11 +109,11 @@ class SeeAllPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const DetailProduct()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => const DetailProduct()),
+                // );
               },
               child: Column(
                 children: [
