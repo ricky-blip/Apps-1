@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/config/config.dart';
+import 'package:flutter_syntop/controllers/order_now_controller.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/ratings_widget.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key, required this.product}) : super(key: key);
@@ -17,6 +20,9 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
+  //Access Controller
+  final _orderNowC = Get.put(OrderNowController());
+
   //NOTE Atribute Button + -
   int quantity = 1;
 
@@ -27,8 +33,8 @@ class _DetailProductState extends State<DetailProduct> {
         child: Stack(
           children: [
             //NOTE Stack 1
-            Image.asset(
-              "assets/detail1.png",
+            Image.network(
+              widget.product.gambar,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
@@ -60,7 +66,7 @@ class _DetailProductState extends State<DetailProduct> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Lenovo Thinkpad T570s",
+                                  "${widget.product.merk.merkProduct} ${widget.product.namaProduct}",
                                   style: blackTextStyle.copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -70,7 +76,10 @@ class _DetailProductState extends State<DetailProduct> {
                                 SizedBox(height: 6),
                                 //NOTE STAR
                                 Row(
-                                  children: [RatingsWidget()],
+                                  children: [
+                                    RatingsWidget(),
+                                    // widget.product.rating,
+                                  ],
                                 ),
                               ],
                             ),
@@ -143,10 +152,10 @@ class _DetailProductState extends State<DetailProduct> {
                               ),
                             ),
                             SizedBox(height: 12),
-                            Text(
-                              "Ram 8gb, SSD 256gb, Layar FHD",
-                              style: greyTextStyle.copyWith(fontSize: 14),
-                            ),
+                            HtmlWidget(widget.product.spesifikasi),
+                            // Text(
+                            //   style: greyTextStyle.copyWith(fontSize: 14),
+                            // ),
                           ],
                         ),
                       ],
@@ -194,7 +203,7 @@ class _DetailProductState extends State<DetailProduct> {
                       style: greyTextStyle.copyWith(fontSize: 14),
                     ),
                     Text(
-                      "IDR 12.289.000",
+                      Config.convertToIdr(widget.product.harga, 0),
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -212,12 +221,13 @@ class _DetailProductState extends State<DetailProduct> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderNow(),
-                          ),
-                        );
+                        _orderNowC.postKeranjang(widget.product.id, quantity);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => OrderNow(),
+                        //   ),
+                        // );
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.4,

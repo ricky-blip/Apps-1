@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/config/config.dart';
+import 'package:flutter_syntop/controllers/order_now_controller.dart';
 import 'package:flutter_syntop/pages/payment_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:get/get.dart';
 
 class OrderNow extends StatefulWidget {
   @override
@@ -8,9 +11,10 @@ class OrderNow extends StatefulWidget {
 }
 
 class _OrderNowState extends State<OrderNow> {
+  final _orderNowC = Get.put(OrderNowController());
   // const OrderNow({Key? key}) : super(key: key);
-  String dropdownPayment = 'Mandiri VA';
-  String dropdownDelivery = 'Kurir Instant';
+  String dropdownPayment = 'TF';
+  String dropdownDelivery = 'J&T';
   String dropdownCity = 'Palembang';
 
   @override
@@ -57,124 +61,139 @@ class _OrderNowState extends State<OrderNow> {
             width: MediaQuery.of(context).size.width,
             height: 256,
             color: whiteColor,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Item Ordered",
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: 14,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
+            child: GetBuilder<OrderNowController>(
+              init: OrderNowController(),
+              initState: (_) {
+                _orderNowC.getDataCart();
+              },
+              builder: (_) {
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
+                      Text(
+                        "Item Ordered",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontSize: 14,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/detail1.png",
-                              width: 70,
-                              height: 70,
-                              fit: BoxFit.cover,
-                            ),
+                          Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  _orderNowC.gambarProduct,
+                                  width: 70,
+                                  height: 70,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    _orderNowC.merkProduct +
+                                        " " +
+                                        _orderNowC.namaProduct,
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 14,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    Config.convertToIdr(
+                                      _orderNowC.grandTotal,
+                                      0,
+                                    ),
+                                    style: greyTextStyle.copyWith(
+                                      fontSize: 12,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.add_box_outlined,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    " 1 ",
+                                    style: greyTextStyle.copyWith(
+                                      fontFamily: "Poppins",
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.indeterminate_check_box_outlined,
+                                    size: 30,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    _orderNowC.jmlBarang.toString(),
+                                    style: blackTextStyle.copyWith(
+                                        fontSize: 13, fontFamily: "Poppins"),
+                                  ),
+                                  Text(
+                                    "items",
+                                    style: blackTextStyle.copyWith(
+                                        fontSize: 13, fontFamily: "Poppins"),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Lenovo Thinkpad T570s",
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 14,
-                                  fontFamily: "Poppins",
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Text(
-                                "IDR 12.289.000",
-                                style: greyTextStyle.copyWith(
-                                  fontSize: 12,
-                                  fontFamily: "Poppins",
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.add_box_outlined,
-                                size: 30,
-                              ),
-                              Text(
-                                " 1 ",
-                                style: greyTextStyle.copyWith(
-                                  fontFamily: "Poppins",
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Icon(
-                                Icons.indeterminate_check_box_outlined,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ],
+                      SizedBox(height: 23),
+                      Text(
+                        "Details Descriptions",
+                        style: blackTextStyle.copyWith(
+                          fontSize: 14,
+                          fontFamily: "Poppins",
+                        ),
                       ),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "1 ",
-                                style: blackTextStyle.copyWith(
-                                    fontSize: 13, fontFamily: "Poppins"),
-                              ),
-                              Text(
-                                "items",
-                                style: blackTextStyle.copyWith(
-                                    fontSize: 13, fontFamily: "Poppins"),
-                              ),
-                            ],
-                          ),
-                        ],
+                      SizedBox(height: 10),
+                      TextFormField(
+                        controller: _orderNowC.catatan,
+                        style: greyTextStyle.copyWith(fontSize: 14),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Tulis Catatan",
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 23),
-                  Text(
-                    "Details Descriptions",
-                    style: blackTextStyle.copyWith(
-                      fontSize: 14,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  TextFormField(
-                    style: greyTextStyle.copyWith(fontSize: 14),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Tulis Catatan",
-                    ),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
           ),
+
           //NOTE Section 2
           Padding(
             padding: EdgeInsets.all(20),
@@ -209,10 +228,8 @@ class _OrderNowState extends State<OrderNow> {
                             });
                           },
                           items: <String>[
-                            'Mandiri VA',
-                            'BCA VA',
-                            'BNI VA',
-                            'Bayar di rumah',
+                            'TF',
+                            'COD',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -252,8 +269,9 @@ class _OrderNowState extends State<OrderNow> {
                             });
                           },
                           items: <String>[
-                            'Kurir Instant',
-                            'Ambil di Toko',
+                            'J&T',
+                            'JNE',
+                            'SiCepat',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -294,6 +312,7 @@ class _OrderNowState extends State<OrderNow> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    controller: _orderNowC.name,
                     style: greyTextStyle.copyWith(fontSize: 12),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -311,6 +330,7 @@ class _OrderNowState extends State<OrderNow> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    controller: _orderNowC.phone,
                     style: greyTextStyle.copyWith(fontSize: 12),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -329,6 +349,7 @@ class _OrderNowState extends State<OrderNow> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    controller: _orderNowC.address,
                     style: greyTextStyle.copyWith(fontSize: 12),
                     minLines: 6,
                     keyboardType: TextInputType.multiline,
@@ -394,63 +415,76 @@ class _OrderNowState extends State<OrderNow> {
       bottomNavigationBar: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 80,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: GetBuilder<OrderNowController>(
+            init: OrderNowController(),
+            initState: (_) {
+              _orderNowC.getDataCart();
+            },
+            builder: (_) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Total Price: ",
-                      style: greyTextStyle.copyWith(fontSize: 14),
-                    ),
-                    Text(
-                      "IDR 12.289.000",
-                      style: blackTextStyle.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: bgSplashScreen,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Total Price: ",
+                          style: greyTextStyle.copyWith(fontSize: 14),
                         ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PaymentNow(),
+                        Text(
+                          Config.convertToIdr(_orderNowC.grandTotal, 0),
+                          style: blackTextStyle.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: 45,
-                        child: Center(
-                          child: Text(
-                            "Checkout Now",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: whiteColor,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: bgSplashScreen,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {
+                            _orderNowC.postCheckout(
+                              dropdownCity,
+                              dropdownPayment,
+                              dropdownDelivery,
+                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => PaymentNow(),
+                            //   ),
+                            // );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 45,
+                            child: Center(
+                              child: Text(
+                                "Checkout Now",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: whiteColor,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),

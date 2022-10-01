@@ -4,6 +4,7 @@ import 'package:flutter_syntop/controllers/product_controller.dart';
 import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
+import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/pages/see_all.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/popular_widget.dart';
@@ -147,9 +148,13 @@ class LandingPage extends StatelessWidget {
             builder: (_) {
               print(productC.productRecommendedList.length);
               return Padding(
-                padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                ),
                 child: StaggeredGridView.countBuilder(
                   crossAxisCount: 2,
+                  mainAxisSpacing: 10,
                   itemCount: productC.productRecommendedList.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -230,6 +235,12 @@ class LandingPage extends StatelessWidget {
           //   ),
           // ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Text("Order NOW"),
+        onPressed: () => Get.to(
+          OrderNow(),
+        ),
       ),
     );
   }

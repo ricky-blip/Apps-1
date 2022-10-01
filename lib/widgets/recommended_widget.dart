@@ -51,7 +51,8 @@ class RecommendedWidget extends StatelessWidget {
                         ),
                         Text(
                           //NOTE access Model Recommended untuk harga
-                          Config.convertToIdr(int.parse(recommended.harga), 0),
+                          Config.convertToIdr(
+                              int.parse(recommended.harga.toString()), 0),
                           style: greyTextStyle.copyWith(fontSize: 12),
                         ),
                         SizedBox(height: 10),
@@ -59,7 +60,7 @@ class RecommendedWidget extends StatelessWidget {
                         Row(
                           children: [
                             RatingsWidget(),
-                            Text(recommended.rating),
+                            Text(recommended.rating.toString()),
                           ],
                         ),
                       ],

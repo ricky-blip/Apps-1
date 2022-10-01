@@ -3,10 +3,10 @@ import 'package:intl/intl.dart';
 class Config {
   //url untuk akses endpoint API
 
-  static String urlApi = "https://syntop.sydemy.com/api/";
+  static String urlApi = "http://192.168.247.186:8000/api/";
 
   //url untuk akses endpoint API
-  static String urlMain = "https://syntop.sydemy.com/";
+  static String urlMain = "http://192.168.247.186:8000/";
 
   //format idr
   static String convertToIdr(dynamic number, int decimalDigit) {

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/controllers/order_now_controller.dart';
+import 'package:flutter_syntop/models/order_model.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+
+import '../widgets/order_widget.dart';
 
 class CartPages extends StatelessWidget {
   const CartPages({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _orderC = Get.put(OrderNowController());
+
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         backgroundColor: lightColor,
         //NOTE AppBar
@@ -40,8 +48,8 @@ class CartPages extends StatelessWidget {
           //Note Tab Bar
 
           bottom: TabBar(
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorColor: Colors.black,
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorColor: bgSplashScreen,
             indicatorWeight: 3,
             // labelColor: Colors.black,
             // labelStyle: TextStyle(
@@ -51,13 +59,19 @@ class CartPages extends StatelessWidget {
             tabs: [
               Tab(
                 child: Text(
-                  "In Progress",
+                  "New",
                   style: blackTextStyle.copyWith(fontSize: 14),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Past Orders",
+                  "Process",
+                  style: blackTextStyle.copyWith(fontSize: 14),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  "Done",
                   style: blackTextStyle.copyWith(fontSize: 14),
                 ),
               ),
@@ -67,223 +81,72 @@ class CartPages extends StatelessWidget {
         //NOTE Body
         body: TabBarView(
           children: [
-            //NOTE In Progress
+            //NOTE New
             ListView(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 76,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/detail1.png",
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Lenovo Thinkpad T570s",
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 16,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "1 items • IDR 12.289.000",
-                                      style: greyTextStyle.copyWith(
-                                        fontSize: 13,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                GetBuilder<OrderNowController>(
+                  init: OrderNowController(),
+                  initState: (_) {
+                    _orderC.fetchNewOrder();
+                  },
+                  builder: (_) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _orderC.orderNewList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return OrderWidget(
+                          order: _orderC.orderNewList[index],
+                        );
+                      },
+                    );
+                  },
                 ),
               ],
             ),
-            //NOTE Past Orders
+            //NOTE Process
             ListView(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    // height: 76,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          //NOTE 1
-                          children: [
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/detail1.png",
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Lenovo Thinkpad T570s",
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 16,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "1 items • IDR 12.289.000",
-                                      style: greyTextStyle.copyWith(
-                                        fontSize: 13,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Jun 12, 14:00",
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 10,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          //NOTE 2
-                          children: [
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/detail1.png",
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Lenovo Thinkpad T570s",
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 16,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "1 items • IDR 12.289.000",
-                                      style: greyTextStyle.copyWith(
-                                        fontSize: 13,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Mei 2, 09:00",
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 10,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Cancelled",
-                                      style: redTextStyle.copyWith(
-                                        fontSize: 10,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                GetBuilder<OrderNowController>(
+                  init: OrderNowController(),
+                  initState: (_) {
+                    _orderC.fetchProcessOrder();
+                  },
+                  builder: (_) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _orderC.orderProcessList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return OrderWidget(
+                          order: _orderC.orderProcessList[index],
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            //NOTE Done
+            ListView(
+              children: [
+                GetBuilder<OrderNowController>(
+                  init: OrderNowController(),
+                  initState: (_) {
+                    _orderC.fetchDoneOrder();
+                  },
+                  builder: (_) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _orderC.orderDoneList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return OrderWidget(
+                          order: _orderC.orderDoneList[index],
+                        );
+                      },
+                    );
+                  },
                 ),
               ],
             ),

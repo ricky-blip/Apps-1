@@ -18,29 +18,31 @@ class ProductModel {
 
   //NOTE Atribute
   int id;
-  String merkId;
+  int merkId;
   String namaProduct;
-  String harga;
+  int harga;
   String gambar;
   String spesifikasi;
-  String rating;
+  num rating;
   String status;
   String rekomendasi;
   DateTime createdAt;
   DateTime updatedAt;
   Merk merk;
 
-  //NOTE  
+  //NOTE
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         //NOTE gunakan kondisi untuk ketika ada kondisi NULL = tidakNUll ?? NULL
         id: json["id"] ?? 0,
-        merkId: json["merk_id"] ?? "",
+        merkId: json["merk_id"] ?? 0,
         namaProduct: json["nama_product"] ?? "",
-        harga: json["harga"] ?? "",
+        harga: json["harga"] ?? 0,
+        // gambar: json["gambar"] ??
+        //     "https://syntop.sydemy.com/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
         gambar: json["gambar"] ??
-            "https://syntop.sydemy.com/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
+            "http://192.168.247.186:8000/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
         spesifikasi: json["spesifikasi"] ?? "",
-        rating: json["rating"] ?? "",
+        rating: json["rating"] ?? 0.0,
         status: json["status"] ?? "",
         rekomendasi: json["rekomendasi"] ?? "",
         createdAt: DateTime.parse(

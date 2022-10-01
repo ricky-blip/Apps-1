@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> screen = [
     LandingPage(),
-    CartPages(),
+    SpUtil.getString("name_user") == "" ? LoginPage() : CartPages(),
     //NOTE Button Person
     SpUtil.getString("name_user") == "" ? LoginPage() : ProfilePages(),
   ];
