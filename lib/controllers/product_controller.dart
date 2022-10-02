@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_syntop/config/config.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:get/get.dart';
@@ -69,5 +70,46 @@ class ProductController extends GetxController {
     }
 
     update();
+  }
+
+  //SECTION SEARCH PRODUCT
+
+  TextEditingController keywordInput = TextEditingController();
+
+  //NOTE Fungsi untuk mengambil hasil response API
+  Future<List<ProductModel>> searchProduct(String keyword) async {
+    //buat variable utk menyimpan list data yg diterima dari Response
+    List<ProductModel> listProduct = [];
+
+    //buat request ke API sesuai dgn EndPoint yg dituju
+    try {
+      //mengambil respon dari API
+      var myResponse = await myHttp.get(
+        Uri.parse(Config.urlApi + "product-search?keyword=" + keyword),
+      );
+
+      if (myResponse.statusCode == 200) {
+        var myResponseBody = json.decode(myResponse.body);
+
+        //variable untuk menyimpan list data dari API
+        List listProductResponse = myResponseBody['data'];
+
+        //isikan variable listProduct yg tadinya [] dgn isi listProductResponse yg sdh diLooping
+        listProductResponse.forEach(
+          (element) {
+            //isikan variable listProducts yg tadinya [] dgn isi listProductResponse
+            listProduct.add(
+              ProductModel.fromJson(element),
+            );
+          },
+        );
+      } else {
+        listProduct = [];
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    return listProduct;
   }
 }

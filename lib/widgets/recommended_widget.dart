@@ -57,12 +57,12 @@ class RecommendedWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         //NOTE Ratings
-                        Row(
-                          children: [
-                            RatingsWidget(),
-                            Text(recommended.rating.toString()),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     RatingsWidget(),
+                        //     Text(recommended.rating.toString()),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),

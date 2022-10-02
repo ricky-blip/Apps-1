@@ -75,12 +75,12 @@ class _DetailProductState extends State<DetailProduct> {
                                 ),
                                 SizedBox(height: 6),
                                 //NOTE STAR
-                                Row(
-                                  children: [
-                                    RatingsWidget(),
-                                    // widget.product.rating,
-                                  ],
-                                ),
+                                // Row(
+                                //   children: [
+                                //     RatingsWidget(),
+                                //     // widget.product.rating,
+                                //   ],
+                                // ),
                               ],
                             ),
                             //NOTE BUTTON + -

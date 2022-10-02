@@ -117,7 +117,7 @@ class Item {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         namaProduct: json["nama_product"],
-        gambar: "http://192.168.247.186:8000/storage/" + json["gambar"],
+        gambar: "http://192.168.18.133:8000/storage/" + json["gambar"],
         hargaSatuan: json["harga_satuan"],
         merkProduct: json["merk_product"],
       );

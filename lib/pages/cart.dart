@@ -50,7 +50,7 @@ class CartPages extends StatelessWidget {
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: bgSplashScreen,
-            indicatorWeight: 3,
+            indicatorWeight: 4,
             // labelColor: Colors.black,
             // labelStyle: TextStyle(
             //   fontWeight: FontWeight.normal,

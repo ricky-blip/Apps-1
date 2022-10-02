@@ -139,6 +139,7 @@ class LandingPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 17),
+
           //NOTE Recommended Widget
           GetBuilder<ProductController>(
             init: ProductController(),

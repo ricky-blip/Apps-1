@@ -53,12 +53,12 @@ class PopularWidget extends StatelessWidget {
                       ),
                       SizedBox(height: 5),
                       //NOTE Star
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          RatingsWidget(),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   children: [
+                      //     RatingsWidget(),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

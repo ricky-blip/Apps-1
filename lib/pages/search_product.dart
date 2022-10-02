@@ -4,25 +4,29 @@ import 'package:flutter_syntop/controllers/product_controller.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/models/see_all.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
-import 'package:flutter_syntop/pages/search_product.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/see_all_widget.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import '../pages/detail_product.dart';
 import '../widgets/chip_widget.dart';
 
-class SeeAllPage extends StatelessWidget {
-  const SeeAllPage({Key? key}) : super(key: key);
+class SearchProductPages extends StatelessWidget {
+  const SearchProductPages({Key? key, required this.keywordInput})
+      : super(key: key);
+
+  final String keywordInput;
 
   @override
   Widget build(BuildContext context) {
     final _pController = Get.put(ProductController());
 
     return Scaffold(
+      //SECTION AppBar
       appBar: AppBar(
         backgroundColor: bgSplashScreen,
         automaticallyImplyLeading: false,
-        toolbarHeight: 70,
+        // toolbarHeight: 70,
         elevation: 0,
         // backgroundColor: whiteColor,
         flexibleSpace: SafeArea(
@@ -32,12 +36,12 @@ class SeeAllPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 7, top: 15),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(Icons.arrow_back_sharp),
+                      child: Icon(Icons.arrow_back_sharp, color: Colors.white),
                     ),
                   ),
                   Padding(
@@ -50,76 +54,25 @@ class SeeAllPage extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 0),
-                        child: TextField(
-                          controller: _pController.keywordInput,
-                          style: greyTextStyle.copyWith(fontSize: 14),
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                Get.to(
-                                  SearchProductPages(
-                                    keywordInput:
-                                        _pController.keywordInput.text,
-                                  ),
-                                );
-                                // meremove hasil input text pencarian
-                                _pController.keywordInput.clear();
-                              },
-                              icon: Icon(Icons.search),
-                            ),
-                            border: InputBorder.none,
-                            hintText: "Cari laptop apa hari ini ...",
-                          ),
-                        ),
-                      ),
+                      // child: Padding(
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: 10, vertical: 0),
+                      //   child: TextField(
+                      //     style: greyTextStyle.copyWith(fontSize: 14),
+                      //     decoration: InputDecoration(
+                      //       suffixIcon: IconButton(
+                      //         onPressed: () {},
+                      //         icon: Icon(Icons.search),
+                      //       ),
+                      //       border: InputBorder.none,
+                      //       hintText: "Cari laptop apa hari ini ...",
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                 ],
               ),
-
-              //TODO chip pakai sliverApp di body
-              //NOTE Chip
-              // Row(
-              //   children: [
-              //     Container(
-              //       // color: Colors.amber,
-              //       width: MediaQuery.of(context).size.width,
-              //       child: SingleChildScrollView(
-              //         scrollDirection: Axis.horizontal,
-              //         child: Row(
-              //           children: [
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Macbook",
-              //               iconChip: Icon(Icons.laptop_mac),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Lenovo Thinkpad",
-              //               iconChip: Icon(Icons.laptop_windows),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Dell XPS",
-              //               iconChip: Icon(Icons.laptop_sharp),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Huawei Matebook",
-              //               iconChip: Icon(Icons.laptop_sharp),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
@@ -129,6 +82,10 @@ class SeeAllPage extends StatelessWidget {
           children: [
             Column(
               children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text("Hasil Pencarian : " + keywordInput),
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: SingleChildScrollView(
@@ -138,7 +95,7 @@ class SeeAllPage extends StatelessWidget {
                       child: Column(
                         children: [
                           FutureBuilder<List<ProductModel>>(
-                            future: _pController.getProduct("all"),
+                            future: _pController.searchProduct(keywordInput),
                             builder: (context, snapshot) {
                               //IF Menunggu Koneksi
                               if (snapshot.connectionState ==
@@ -180,29 +137,6 @@ class SeeAllPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     //NOTE access Popular_Widget --> id,imageUrl,name,harga from Model
-                //     SeeAllWidget(
-                //       SeeAll(
-                //         id: 1,
-                //         imageUrl: "assets/laptop1.png",
-                //         name: "Macbook Air 2030",
-                //         harga: "IDR 21.000.000",
-                //       ),
-                //     ),
-                //     SeeAllWidget(
-                //       SeeAll(
-                //         id: 2,
-                //         imageUrl: "assets/laptop2.png",
-                //         name: "Dell Latitude 17",
-                //         harga: "IDR 35.000.000",
-                //       ),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ],
