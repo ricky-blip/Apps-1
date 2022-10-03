@@ -40,7 +40,7 @@ class ProductModel {
         // gambar: json["gambar"] ??
         //     "https://syntop.sydemy.com/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
         gambar: json["gambar"] ??
-            "http://192.168.18.133:8000/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
+            "http://192.168.247.186:8000/storage/product-images/5puVDfAAeLtiESGhHbFW5sjZoVW1ts27sp5fjg3K.webp",
         spesifikasi: json["spesifikasi"] ?? "",
         rating: json["rating"] ?? 0.0,
         status: json["status"] ?? "",
