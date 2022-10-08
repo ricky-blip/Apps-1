@@ -53,14 +53,7 @@ class LandingPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => DetailProduct(),
-                //   ),
-                // );
-              },
+              onTap: () {},
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -238,7 +231,8 @@ class LandingPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Text("Order NOW"),
+        backgroundColor: bgSplashScreen,
+        child: Icon(Icons.shopping_cart),
         onPressed: () => Get.to(
           OrderNow(),
         ),

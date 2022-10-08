@@ -206,8 +206,8 @@ class OrderNowController extends GetxController {
     grandTotal = responseDecode["grandtotal"];
     namaProduct = responseDecode["data"][0]["nama_product"];
     merkProduct = responseDecode["data"][0]["merk_product"];
-    gambarProduct = "http://192.168.18.133:8000/storage/" +
-        responseDecode["data"][0]["gambar"];
+    gambarProduct =
+        Config.urlMain + "storage/" + responseDecode["data"][0]["gambar"];
 
     update();
   }

@@ -1,3 +1,5 @@
+import 'package:flutter_syntop/config/config.dart';
+
 class OrderModel {
   OrderModel({
     required this.id,
@@ -117,7 +119,7 @@ class Item {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         namaProduct: json["nama_product"],
-        gambar: "http://192.168.247.186:8000/storage/" + json["gambar"],
+        gambar: Config.urlMain + "storage/" + json["gambar"],
         hargaSatuan: json["harga_satuan"],
         merkProduct: json["merk_product"],
       );

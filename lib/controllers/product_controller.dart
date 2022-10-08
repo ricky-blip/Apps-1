@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_syntop/config/config.dart';
+import 'package:flutter_syntop/models/merk_model.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as myHttp;
@@ -8,6 +9,48 @@ import 'dart:convert';
 class ProductController extends GetxController {
   //NOTE variable yg akan digunakan utk menampilkan data
   List<ProductModel> productRecommendedList = <ProductModel>[];
+
+
+  //SECTION Merk
+  //NOTE Fungsi untuk mengambil hasil response API
+  Future<List<MerkModel>> getMerk() async {
+    //menampung endPoint
+    String endPoint = "merk-list";
+
+    //buat variable utk menyimpan list data yg diterima dari Response
+    List<MerkModel> listMerk = [];
+
+    //buat request ke API sesuai dgn EndPoint yg dituju
+    try {
+      //mengambil respon dari API
+      var myResponse = await myHttp.get(
+        Uri.parse(Config.urlApi + endPoint),
+      );
+
+      if (myResponse.statusCode == 200) {
+        var myResponseBody = json.decode(myResponse.body);
+
+        //variable untuk menyimpan list data dari API
+        List listProductResponse = myResponseBody['data'];
+
+        //isikan variable listProduct yg tadinya [] dgn isi listProductResponse yg sdh diLooping
+        listProductResponse.forEach(
+          (element) {
+            //isikan variable listProducts yg tadinya [] dgn isi listProductResponse
+            listMerk.add(
+              MerkModel.fromJson(element),
+            );
+          },
+        );
+      } else {
+        listMerk = [];
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    return listMerk;
+  }
 
   //NOTE Fungsi untuk mengambil hasil response API
   Future<List<ProductModel>> getProduct(String tipe) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_syntop/controllers/product_controller.dart';
+import 'package:flutter_syntop/models/merk_model.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/models/see_all.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
@@ -127,6 +128,45 @@ class SeeAllPage extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
+            //NOTE Chips Filter
+            FutureBuilder<List<MerkModel>>(
+              future: _pController.getMerk(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text("Waiting");
+                } else if (snapshot.hasData) {
+                  //mengembalikan data dengan widget Chips
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...snapshot.data!.map(
+                          (e) => Container(
+                            margin: const EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                              top: 5,
+                              bottom: 5,
+                            ),
+                            child: SeeAllChip(
+                              merk: e,
+                              colorChip: bgSplashScreen,
+                              iconChip: Icon(Icons.laptop_mac_outlined),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (snapshot.data!.isEmpty) {
+                  return Text("Data Kosing");
+                } else if (snapshot.hasError) {
+                  return Text("Koneksi Error");
+                }
+                return SizedBox();
+              },
+            ),
+
             Column(
               children: [
                 Container(
@@ -146,7 +186,9 @@ class SeeAllPage extends StatelessWidget {
                                 return Center(
                                   child: Column(
                                     children: [
-                                      CircularProgressIndicator(),
+                                      CircularProgressIndicator(
+                                        backgroundColor: bgSplashScreen,
+                                      ),
                                     ],
                                   ),
                                 );
@@ -168,11 +210,15 @@ class SeeAllPage extends StatelessWidget {
                                   },
                                 );
                               } else if (snapshot.data!.isEmpty) {
-                                return Text("Data Kosing");
+                                return Text("Data Kosong");
                               } else if (snapshot.hasError) {
                                 return Text("Koneksi Error");
                               }
-                              return CircularProgressIndicator();
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  backgroundColor: bgSplashScreen,
+                                ),
+                              );
                             },
                           ),
                         ],
