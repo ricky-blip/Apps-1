@@ -116,7 +116,6 @@ class ProductController extends GetxController {
   }
 
   //SECTION SEARCH PRODUCT
-
   TextEditingController keywordInput = TextEditingController();
 
   //NOTE Fungsi untuk mengambil hasil response API

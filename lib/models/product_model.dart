@@ -2,7 +2,7 @@
 import 'package:flutter_syntop/config/config.dart';
 
 class ProductModel {
-  //NOTE Constractor
+  //NOTE Contractor
   ProductModel({
     required this.id,
     required this.merkId,
