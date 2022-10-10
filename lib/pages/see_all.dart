@@ -80,47 +80,6 @@ class SeeAllPage extends StatelessWidget {
                   ),
                 ],
               ),
-
-              //TODO chip pakai sliverApp di body
-              //NOTE Chip
-              // Row(
-              //   children: [
-              //     Container(
-              //       // color: Colors.amber,
-              //       width: MediaQuery.of(context).size.width,
-              //       child: SingleChildScrollView(
-              //         scrollDirection: Axis.horizontal,
-              //         child: Row(
-              //           children: [
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Macbook",
-              //               iconChip: Icon(Icons.laptop_mac),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Lenovo Thinkpad",
-              //               iconChip: Icon(Icons.laptop_windows),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Dell XPS",
-              //               iconChip: Icon(Icons.laptop_sharp),
-              //             ),
-              //             SizedBox(width: 10),
-              //             SeeAllChip(
-              //               colorChip: whiteColor,
-              //               text: "Huawei Matebook",
-              //               iconChip: Icon(Icons.laptop_sharp),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
@@ -163,7 +122,7 @@ class SeeAllPage extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text("Koneksi Error");
                 }
-                return SizedBox();
+                return const SizedBox();
               },
             ),
 

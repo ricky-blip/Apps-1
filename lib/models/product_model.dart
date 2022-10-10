@@ -32,7 +32,7 @@ class ProductModel {
   DateTime updatedAt;
   Merk merk;
 
-  //NOTE
+  //SECTION Product
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         //NOTE gunakan kondisi untuk ketika ada kondisi NULL = tidakNUll ?? NULL
         id: json["id"] ?? 0,
