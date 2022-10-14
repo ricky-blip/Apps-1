@@ -9,7 +9,7 @@ import 'dart:convert';
 class ProductController extends GetxController {
   //NOTE variable yg akan digunakan utk menampilkan data
   List<ProductModel> productRecommendedList = <ProductModel>[];
-
+  List<ProductModel> productNewList = <ProductModel>[];
 
   //SECTION Merk
   //NOTE Fungsi untuk mengambil hasil response API
@@ -52,6 +52,7 @@ class ProductController extends GetxController {
     return listMerk;
   }
 
+  //SECTION Product
   //NOTE Fungsi untuk mengambil hasil response API
   Future<List<ProductModel>> getProduct(String tipe) async {
     //menampung endPoint
@@ -100,6 +101,7 @@ class ProductController extends GetxController {
     return listProduct;
   }
 
+  //NOTE untuk menggunakan GetBuilder
   //NOTE Fungsi untuk isi variable productRecommended
   Future<void> fetchRecommended() async {
     try {

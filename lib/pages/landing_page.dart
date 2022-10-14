@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/controllers/auth_controller.dart';
 import 'package:flutter_syntop/controllers/product_controller.dart';
-import 'package:flutter_syntop/models/popular.dart';
+// import 'package:flutter_syntop/models/popular.dart';
+import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
@@ -54,42 +55,32 @@ class LandingPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: GestureDetector(
               onTap: () {},
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  //SECTION Row Parent
-                  children: [
-                    const SizedBox(width: 10),
-                    //NOTE access Popular_Widget --> id,imageUrl,name,harga
-                    PopularWidget(
-                      Popular(
-                        id: 1,
-                        imageUrl: "assets/laptop1.png",
-                        name: "Macbook Pro 2025 16",
-                        harga: "IDR 51.000.000",
+              child: FutureBuilder<List<ProductModel>>(
+                future: productC.getProduct("new"),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text("waiting");
+                  } else if (snapshot.hasData) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        //SECTION Row Parent
+                        children: [
+                          ...snapshot.data!.map(
+                            (e) => PopularWidget(
+                              popular: e,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    PopularWidget(
-                      Popular(
-                        id: 2,
-                        imageUrl: "assets/laptop2.png",
-                        name: "Dell XPS 15",
-                        harga: "IDR 45.000.000",
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    PopularWidget(
-                      Popular(
-                        id: 3,
-                        imageUrl: "assets/laptop1.png",
-                        name: "Thinkpad x990 13",
-                        harga: "IDR 40.000.000",
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                  ],
-                ),
+                    );
+                  } else if (snapshot.data!.isEmpty) {
+                    return Text("Data Kosong");
+                  } else if (snapshot.hasError) {
+                    return Text("Koneksi Error");
+                  }
+                  return Text("data");
+                },
               ),
             ),
           ),

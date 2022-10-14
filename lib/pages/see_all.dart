@@ -118,7 +118,7 @@ class SeeAllPage extends StatelessWidget {
                     ),
                   );
                 } else if (snapshot.data!.isEmpty) {
-                  return Text("Data Kosing");
+                  return Text("Data Kosong");
                 } else if (snapshot.hasError) {
                   return Text("Koneksi Error");
                 }
@@ -126,6 +126,7 @@ class SeeAllPage extends StatelessWidget {
               },
             ),
 
+            //SECTION All Product
             Column(
               children: [
                 Container(

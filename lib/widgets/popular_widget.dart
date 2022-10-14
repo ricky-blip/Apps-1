@@ -1,15 +1,16 @@
 // ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter_syntop/models/popular.dart';
+// import 'package:flutter_syntop/models/popular.dart';
+import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/ratings_widget.dart';
 
 class PopularWidget extends StatelessWidget {
   //NOTE access class 'Popular' model --> Atribute 'popular'
-  final Popular popular;
+  final ProductModel popular;
 
   //NOTE Constractor
-  const PopularWidget(this.popular);
+  const PopularWidget({required this.popular});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class PopularWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
+                Image.network(
                   //NOTE access Model Popular untuk image
-                  popular.imageUrl,
+                  popular.gambar,
                   width: MediaQuery.of(context).size.width,
                   height: 170,
                   fit: BoxFit.cover,
@@ -43,12 +44,12 @@ class PopularWidget extends StatelessWidget {
                     children: [
                       Text(
                         //NOTE access Model Popular untuk name
-                        popular.name,
+                        popular.namaProduct,
                         style: blackTextStyle.copyWith(fontSize: 12),
                       ),
                       Text(
                         //NOTE access Model Popular untuk harga
-                        popular.harga,
+                        popular.harga.toString(),
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
                       SizedBox(height: 5),
