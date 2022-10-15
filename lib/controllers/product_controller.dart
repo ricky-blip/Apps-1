@@ -119,7 +119,6 @@ class ProductController extends GetxController {
 
   //SECTION SEARCH PRODUCT
   TextEditingController keywordInput = TextEditingController();
-
   //NOTE Fungsi untuk mengambil hasil response API
   Future<List<ProductModel>> searchProduct(String keyword) async {
     //buat variable utk menyimpan list data yg diterima dari Response
@@ -154,6 +153,43 @@ class ProductController extends GetxController {
       print(e);
     }
 
+    return listProduct;
+  }
+
+  //SECTION PRODUCT BY MERK
+  //NOTE Fungsi untuk mengambil hasil response API
+  Future<List<ProductModel>> productByMerkId(String merkId) async {
+    //buat variable utk menyimpan list data yg diterima dari Response
+    List<ProductModel> listProduct = [];
+
+    //buat request ke API sesuai dgn EndPoint yg dituju
+    try {
+      //mengambil respon dari API
+      var myResponse = await myHttp.get(
+        Uri.parse(Config.urlApi + "product-by-merk?merk_id=" + merkId),
+      );
+
+      if (myResponse.statusCode == 200) {
+        var myResponseBody = json.decode(myResponse.body);
+
+        //variable untuk menyimpan list data dari API
+        List listProductResponse = myResponseBody['data'];
+
+        //isikan variable listProduct yg tadinya [] dgn isi listProductResponse yg sdh diLooping
+        listProductResponse.forEach(
+          (element) {
+            //isikan variable listProducts yg tadinya [] dgn isi listProductResponse
+            listProduct.add(
+              ProductModel.fromJson(element),
+            );
+          },
+        );
+      } else {
+        listProduct = [];
+      }
+    } catch (e) {
+      print(e);
+    }
     return listProduct;
   }
 }

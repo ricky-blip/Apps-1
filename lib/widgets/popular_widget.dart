@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/config/config.dart';
 // import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/themes/theme.dart';
@@ -23,7 +24,7 @@ class PopularWidget extends StatelessWidget {
             width: 250,
             // height: 193,
             decoration: BoxDecoration(
-              color: whiteColor,
+              color: Colors.amber,
               // add Box Shadow
               // borderRadius: BorderRadius.circular(10),
             ),
@@ -49,7 +50,9 @@ class PopularWidget extends StatelessWidget {
                       ),
                       Text(
                         //NOTE access Model Popular untuk harga
-                        popular.harga.toString(),
+                        Config.convertToIdr(
+                            int.parse(popular.harga.toString()), 0),
+
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
                       SizedBox(height: 5),

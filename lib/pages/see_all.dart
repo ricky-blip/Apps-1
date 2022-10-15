@@ -5,6 +5,7 @@ import 'package:flutter_syntop/models/merk_model.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/models/see_all.dart';
 import 'package:flutter_syntop/pages/landing_page.dart';
+import 'package:flutter_syntop/pages/product_by_merk_page.dart';
 import 'package:flutter_syntop/pages/search_product.dart';
 import 'package:flutter_syntop/themes/theme.dart';
 import 'package:flutter_syntop/widgets/see_all_widget.dart';
@@ -100,17 +101,22 @@ class SeeAllPage extends StatelessWidget {
                     child: Row(
                       children: [
                         ...snapshot.data!.map(
-                          (e) => Container(
-                            margin: const EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                              top: 5,
-                              bottom: 5,
+                          (e) => GestureDetector(
+                            onTap: () => Get.to(
+                              ProductByMerk(merkId: e.id),
                             ),
-                            child: SeeAllChip(
-                              merk: e,
-                              colorChip: bgSplashScreen,
-                              iconChip: Icon(Icons.laptop_mac_outlined),
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                                top: 5,
+                                bottom: 5,
+                              ),
+                              child: SeeAllChip(
+                                merk: e,
+                                colorChip: bgSplashScreen,
+                                iconChip: Icon(Icons.laptop_mac_outlined),
+                              ),
                             ),
                           ),
                         ),
