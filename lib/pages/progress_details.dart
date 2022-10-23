@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/config/config.dart';
 import 'package:flutter_syntop/models/order_model.dart';
+import 'package:flutter_syntop/pages/payment_now.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:get/utils.dart';
+import 'package:get/get.dart';
 
 class ProgressDetails extends StatelessWidget {
   const ProgressDetails({Key? key, required this.order}) : super(key: key);
@@ -358,21 +361,28 @@ class ProgressDetails extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 45,
-                child: Center(
-                  child: Text(
-                    'Cancel My Order',
-                    style: whiteTextStyle.copyWith(
-                        fontSize: 14, fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () {
+                Get.to(
+                  PaymentNow(order: order),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 45,
+                  child: Center(
+                    child: Text(
+                      'Upload Bukti Bayar',
+                      style: whiteTextStyle.copyWith(
+                          fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                decoration: BoxDecoration(
-                  color: bgSplashScreen,
-                  borderRadius: BorderRadius.circular(8),
+                  decoration: BoxDecoration(
+                    color: bgSplashScreen,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
             )

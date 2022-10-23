@@ -1,12 +1,89 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_syntop/config/config.dart';
+import 'package:flutter_syntop/controllers/order_now_controller.dart';
+import 'package:flutter_syntop/models/order_model.dart';
 import 'package:flutter_syntop/pages/success.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PaymentNow extends StatelessWidget {
-  const PaymentNow({Key? key}) : super(key: key);
+  const PaymentNow({Key? key, required this.order}) : super(key: key);
+
+  final OrderModel order;
 
   @override
   Widget build(BuildContext context) {
+    final orderController = Get.put(OrderNowController(), permanent: false);
+
+    //Function untuk menampilkan pilihan ambil gambar dari kamera/ galeri
+    takeImage(mContext) {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: const Text(
+              'Pilih',
+              style: TextStyle(
+                color: Colors.amber,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            children: [
+              SimpleDialogOption(
+                child: Row(
+                  children: const [
+                    Icon(Icons.camera_alt),
+                    Text(
+                      "Kamera",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  Get.back();
+                  orderController.getImage(ImageSource.camera);
+                },
+              ),
+              SimpleDialogOption(
+                child: Row(
+                  children: const [
+                    Icon(Icons.image),
+                    Text(
+                      "Galeri",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  Get.back();
+                  orderController.getImage(ImageSource.gallery);
+                },
+              ),
+              SimpleDialogOption(
+                child: Container(
+                  alignment: Alignment.bottomRight,
+                  child: const Text(
+                    'Batal',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+                onPressed: () => Get.back(),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: lightColor,
       appBar: AppBar(
@@ -99,7 +176,7 @@ class PaymentNow extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
@@ -109,22 +186,27 @@ class PaymentNow extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(
-                        Icons.upload_sharp,
-                        size: 70,
+                      Obx(
+                        () => orderController.selectedImagePath.value == ''
+                            ? const Icon(
+                                Icons.upload,
+                                size: 70,
+                              )
+                            : Image.file(
+                                File(orderController.selectedImagePath.value),
+                                fit: BoxFit.contain,
+                                height: 100,
+                                width: 300,
+                              ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(uploadColor),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SuccessPages()),
-                          );
+                          takeImage(context);
                         },
                         child: Text(
                           "Upload Bukti bayar",
@@ -179,7 +261,7 @@ class PaymentNow extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Lenovo Thinkpad T570s",
+                                "${order.item.merkProduct} ${order.item.namaProduct}",
                                 style: blackTextStyle.copyWith(
                                   fontSize: 16,
                                   fontFamily: "Poppins",
@@ -191,7 +273,7 @@ class PaymentNow extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "IDR 12.289.000",
+                                Config.convertToIdr(order.item.totalharga, 0),
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
                                   fontFamily: "Poppins",
@@ -339,7 +421,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Ricky Rinaldy",
+                            "R",
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -421,6 +503,42 @@ class PaymentNow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                if (orderController.selectedImagePath.value == '') {
+                  Get.snackbar('Error', 'Harap upload bukti bayar!');
+                } else {
+                  orderController.sendData(order.id.toString());
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 45,
+                  child: Center(
+                    child: Text(
+                      'Kirim bukti Bayar',
+                      style: whiteTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: bgSplashScreen,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

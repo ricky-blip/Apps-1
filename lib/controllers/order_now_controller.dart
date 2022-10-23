@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_syntop/config/config.dart';
@@ -9,9 +10,11 @@ import 'package:flutter_syntop/pages/login.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/pages/splash_screen.dart';
 import 'package:flutter_syntop/themes/theme.dart';
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as myhttp;
 import 'package:sp_util/sp_util.dart';
+import 'package:image_picker/image_picker.dart';
 
 class OrderNowController extends GetxController {
   //SECTION Function Order NOW
@@ -280,6 +283,93 @@ class OrderNowController extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: bgSplashScreen,
         colorText: whiteColor,
+      );
+    }
+  }
+
+  //SECTION Upload bukti bayar
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
+
+  void getImage(ImageSource imageSource) async {
+    final _picker = ImagePicker();
+    final pickedFile = await _picker.pickImage(
+      source: imageSource,
+      maxHeight: 720,
+      maxWidth: 1280,
+    );
+
+    //jika si wadah pickedFile tdk kosong
+    if (pickedFile != null) {
+      //maka isikan variable selectedImagePath dgn nilai yg telah diterima pickedFile
+      selectedImagePath.value = pickedFile.path;
+    } else {
+      Get.snackbar(
+        'Warning',
+        'Tidak ada gambar yang dipilih',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent,
+        margin: const EdgeInsets.only(bottom: 6, right: 6, left: 6),
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  //NOTE Post data image
+  Future<void> sendData(String checkoutId) async {
+    var url = Uri.parse(Config.urlApi + 'upload-bukti-bayar');
+
+    try {
+      var request = myhttp.MultipartRequest('POST', url);
+      request.files.add(
+        await myhttp.MultipartFile.fromPath(
+          'buktibayar',
+          selectedImagePath.value,
+        ),
+      );
+      request.fields['checkout_id'] = checkoutId;
+
+      myhttp.Response response = await myhttp.Response.fromStream(
+        await request.send(),
+      );
+      var responseDecode = jsonDecode(response.body);
+
+      if (responseDecode['success'] == true) {
+        Get.snackbar(
+          'Success',
+          responseDecode['message'],
+          colorText: Colors.white,
+          backgroundColor: Colors.green,
+          margin: const EdgeInsets.only(
+            top: 8,
+            left: 6,
+            right: 6,
+          ),
+        );
+      } else {
+        Get.snackbar(
+          'Error',
+          responseDecode['message'],
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          margin: const EdgeInsets.only(
+            top: 8,
+            left: 6,
+            right: 6,
+          ),
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        margin: const EdgeInsets.only(
+          top: 8,
+          left: 6,
+          right: 6,
+        ),
       );
     }
   }
