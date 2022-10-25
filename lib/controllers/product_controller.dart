@@ -3,7 +3,7 @@ import 'package:flutter_syntop/config/config.dart';
 import 'package:flutter_syntop/models/merk_model.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as myHttp;
+import 'package:http/http.dart' as myhttp;
 import 'dart:convert';
 
 class ProductController extends GetxController {
@@ -23,7 +23,7 @@ class ProductController extends GetxController {
     //buat request ke API sesuai dgn EndPoint yg dituju
     try {
       //mengambil respon dari API
-      var myResponse = await myHttp.get(
+      var myResponse = await myhttp.get(
         Uri.parse(Config.urlApi + endPoint),
       );
 
@@ -72,7 +72,7 @@ class ProductController extends GetxController {
     //buat request ke API sesuai dgn EndPoint yg dituju
     try {
       //mengambil respon dari API
-      var myResponse = await myHttp.get(
+      var myResponse = await myhttp.get(
         Uri.parse(Config.urlApi + endPoint),
       );
 
@@ -127,8 +127,8 @@ class ProductController extends GetxController {
     //buat request ke API sesuai dgn EndPoint yg dituju
     try {
       //mengambil respon dari API
-      var myResponse = await myHttp.get(
-        Uri.parse(Config.urlApi + "product-search?keyword=" + keyword),
+      var myResponse = await myhttp.get(
+        Uri.parse("${Config.urlApi}product-search?keyword=$keyword"),
       );
 
       if (myResponse.statusCode == 200) {
@@ -165,8 +165,8 @@ class ProductController extends GetxController {
     //buat request ke API sesuai dgn EndPoint yg dituju
     try {
       //mengambil respon dari API
-      var myResponse = await myHttp.get(
-        Uri.parse(Config.urlApi + "product-by-merk?merk_id=" + merkId),
+      var myResponse = await myhttp.get(
+        Uri.parse("${Config.urlApi}product-by-merk?merk_id=$merkId"),
       );
 
       if (myResponse.statusCode == 200) {

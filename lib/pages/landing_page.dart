@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/controllers/auth_controller.dart';
 import 'package:flutter_syntop/controllers/product_controller.dart';
-// import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/product_model.dart';
-import 'package:flutter_syntop/models/recommended.dart';
 import 'package:flutter_syntop/pages/detail_product.dart';
 import 'package:flutter_syntop/pages/order_now.dart';
 import 'package:flutter_syntop/pages/see_all.dart';
@@ -32,7 +30,7 @@ class LandingPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           //NOTE get data Nama User
-          "${SpUtil.getString("name_user").toString() == "Hey" ? "User" : SpUtil.getString("name_user").toString() + " " + "Happy Good Day"} ",
+          "${SpUtil.getString("name_user").toString() == "Hey" ? "User" : "${SpUtil.getString("name_user")} Happy Good Day"} ",
           style: blackTextStyle.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,
@@ -43,7 +41,7 @@ class LandingPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: CircleAvatar(
               backgroundColor: Colors.grey[500],
-              backgroundImage: AssetImage("assets/profile1.png"),
+              backgroundImage: const AssetImage("assets/profile1.png"),
             ),
           ),
         ],
@@ -59,7 +57,7 @@ class LandingPage extends StatelessWidget {
                 future: productC.getProduct("new"),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text("waiting");
+                    return const Text("waiting");
                   } else if (snapshot.hasData) {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -222,8 +220,8 @@ class LandingPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: bgSplashScreen,
-        child: Icon(Icons.shopping_cart),
+        backgroundColor: Colors.orange,
+        child: const Icon(Icons.shopping_cart),
         onPressed: () => Get.to(
           OrderNow(),
         ),

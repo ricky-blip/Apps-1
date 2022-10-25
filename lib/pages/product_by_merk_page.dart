@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -52,12 +54,12 @@ class ProductByMerk extends StatelessWidget {
             //SECTION All Product
             Column(
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           FutureBuilder<List<ProductModel>>(
@@ -79,12 +81,13 @@ class ProductByMerk extends StatelessWidget {
                               } else if (snapshot.hasData) {
                                 return StaggeredGridView.countBuilder(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   crossAxisCount: 2,
                                   itemCount: snapshot.data!.length,
                                   staggeredTileBuilder: (c) =>
                                       const StaggeredTile.fit(1),
                                   itemBuilder: (context, index) {
+                                    // ignore: unused_local_variable
                                     int urutan = index + 1;
                                     ProductModel allProduct =
                                         snapshot.data![index];
@@ -94,9 +97,9 @@ class ProductByMerk extends StatelessWidget {
                                   },
                                 );
                               } else if (snapshot.data!.isEmpty) {
-                                return Text("Data Kosong");
+                                return const Text("Data Kosong");
                               } else if (snapshot.hasError) {
-                                return Text("Koneksi Error");
+                                return const Text("Koneksi Error");
                               }
                               return Center(
                                 child: CircularProgressIndicator(

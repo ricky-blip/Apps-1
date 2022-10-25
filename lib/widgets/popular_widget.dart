@@ -1,10 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_syntop/config/config.dart';
-// import 'package:flutter_syntop/models/popular.dart';
 import 'package:flutter_syntop/models/product_model.dart';
 import 'package:flutter_syntop/themes/theme.dart';
-import 'package:flutter_syntop/widgets/ratings_widget.dart';
 
 class PopularWidget extends StatelessWidget {
   //NOTE access class 'Popular' model --> Atribute 'popular'
@@ -23,7 +21,7 @@ class PopularWidget extends StatelessWidget {
           child: Container(
             width: 250,
             // height: 193,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.amber,
               // add Box Shadow
               // borderRadius: BorderRadius.circular(10),
@@ -55,7 +53,7 @@ class PopularWidget extends StatelessWidget {
 
                         style: greyTextStyle.copyWith(fontSize: 12),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       //NOTE Star
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.start,
