@@ -117,6 +117,20 @@ class ProductController extends GetxController {
     update();
   }
 
+  Future<void> fetchNew() async {
+    try {
+      //variable utk menyimpan return listProduct yg ada di function getProduct
+      List<ProductModel> product = await getProduct("new");
+      if (product.isNotEmpty) {
+        productNewList.assignAll(product);
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    update();
+  }
+
   //SECTION SEARCH PRODUCT
   TextEditingController keywordInput = TextEditingController();
   //NOTE Fungsi untuk mengambil hasil response API

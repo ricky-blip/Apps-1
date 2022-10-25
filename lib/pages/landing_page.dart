@@ -51,35 +51,32 @@ class LandingPage extends StatelessWidget {
           //NOTE Popular Widget
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: GestureDetector(
-              onTap: () {},
-              child: FutureBuilder<List<ProductModel>>(
-                future: productC.getProduct("new"),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Text("waiting");
-                  } else if (snapshot.hasData) {
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        //SECTION Row Parent
-                        children: [
-                          ...snapshot.data!.map(
-                            (e) => PopularWidget(
-                              popular: e,
-                            ),
+            child: FutureBuilder<List<ProductModel>>(
+              future: productC.getProduct("new"),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text("waiting");
+                } else if (snapshot.hasData) {
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      //SECTION Row Parent
+                      children: [
+                        ...snapshot.data!.map(
+                          (e) => PopularWidget(
+                            popular: e,
                           ),
-                        ],
-                      ),
-                    );
-                  } else if (snapshot.data!.isEmpty) {
-                    return Text("Data Kosong");
-                  } else if (snapshot.hasError) {
-                    return Text("Koneksi Error");
-                  }
-                  return Text("data");
-                },
-              ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (snapshot.data!.isEmpty) {
+                  return Text("Data Kosong");
+                } else if (snapshot.hasError) {
+                  return Text("Koneksi Error");
+                }
+                return Text("data");
+              },
             ),
           ),
           const SizedBox(height: 40),
