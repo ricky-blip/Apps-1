@@ -269,7 +269,7 @@ class PaymentNow extends StatelessWidget {
                               )
                             ],
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             children: [
                               Text(
@@ -283,20 +283,17 @@ class PaymentNow extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Column(
                         children: [
                           Row(
                             children: [
                               Text(
-                                "1 ",
+                                "${order.item.jumlah} Items",
                                 style: blackTextStyle.copyWith(
-                                    fontSize: 13, fontFamily: "Poppins"),
-                              ),
-                              Text(
-                                "items",
-                                style: blackTextStyle.copyWith(
-                                    fontSize: 13, fontFamily: "Poppins"),
+                                  fontSize: 13,
+                                  fontFamily: "Poppins",
+                                ),
                               ),
                             ],
                           ),
@@ -304,7 +301,7 @@ class PaymentNow extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     "Details Transaction",
                     style: TextStyle(
@@ -313,14 +310,14 @@ class PaymentNow extends StatelessWidget {
                       fontFamily: "Poppins",
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Lenovo Thinkpad T570s",
+                            "Harga '${order.item.merkProduct} ${order.item.namaProduct}'",
                             style: TextStyle(
                               color: greyColor,
                               fontSize: 14,
@@ -328,7 +325,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "IDR 12.289.000",
+                            Config.convertToIdr(order.item.hargaSatuan, 0),
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -350,7 +347,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "IDR 50.000",
+                            order.jenisPengiriman,
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -359,7 +356,7 @@ class PaymentNow extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -372,8 +369,8 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "IDR 12.339.000",
-                            style: TextStyle(
+                            Config.convertToIdr(order.grandTotal, 0),
+                            style: const TextStyle(
                               color: Color(0xff1ABC9C),
                               fontSize: 14,
                               fontFamily: "Poppins",
@@ -387,8 +384,8 @@ class PaymentNow extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 17),
-          //NOTE Section 3
+          const SizedBox(height: 17),
+          //NOTE Section 3 : Pengiriman ke
           Container(
             width: MediaQuery.of(context).size.width,
             height: 178,
@@ -421,7 +418,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "R",
+                            order.nama,
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -430,7 +427,7 @@ class PaymentNow extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -443,7 +440,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "0812 0102 1995",
+                            order.nohp,
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -452,7 +449,7 @@ class PaymentNow extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -465,7 +462,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Setra Duta Palima",
+                            order.alamat,
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -487,7 +484,7 @@ class PaymentNow extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Palembang",
+                            order.kotaKecamatan,
                             style: TextStyle(
                               color: blackColor,
                               fontSize: 14,
@@ -515,12 +512,17 @@ class PaymentNow extends StatelessWidget {
                 } else {
                   orderController.sendData(order.id.toString());
                 }
+                Get.to(const SuccessPages());
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: 45,
+                  decoration: BoxDecoration(
+                    color: bgSplashScreen,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   child: Center(
                     child: Text(
                       'Kirim bukti Bayar',
@@ -529,10 +531,6 @@ class PaymentNow extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: bgSplashScreen,
-                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),
