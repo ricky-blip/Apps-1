@@ -20,12 +20,13 @@ class ProfilePages extends StatelessWidget {
     return Scaffold(
       backgroundColor: lightColor,
       appBar: AppBar(
+        backgroundColor: bgSplashScreen,
         actions: [
           IconButton(
             onPressed: () {
               authC.logout();
             },
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -52,24 +53,23 @@ class ProfilePages extends StatelessWidget {
                         child: Center(
                           child: Column(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 backgroundImage: AssetImage(
                                   "assets/profile1.png",
                                 ),
                                 minRadius: 50,
                                 maxRadius: 60,
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Text(
-                                //TODO menambahkan spUtil ke name Profile
+                                //NOTE menambahkan spUtil ke name Profile
                                 SpUtil.getString("name_user").toString(),
-                                // "Alexandre Christie",
                                 style: TextStyle(
                                   color: blackColor,
                                   fontSize: 20,
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 SpUtil.getString("email_user").toString(),
                                 style: TextStyle(
@@ -77,14 +77,14 @@ class ProfilePages extends StatelessWidget {
                                   fontSize: 11,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                             ],
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   //SECTION 2: Container Button
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),

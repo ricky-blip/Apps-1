@@ -30,7 +30,7 @@ class LandingPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           //NOTE get data Nama User
-          "${SpUtil.getString("name_user").toString() == "Hey" ? "User" : "${SpUtil.getString("name_user")} Happy Good Day"} ",
+          "${SpUtil.getString("name_user").toString() == "Hey" ? "User" : "Welcome"} ",
           style: blackTextStyle.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,
